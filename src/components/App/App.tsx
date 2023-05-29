@@ -1,5 +1,5 @@
 const App = (): React.ReactElement => {
-  return <h1>BoulderLab</h1>;
+  return <h1>boulderlab</h1>;
 };
 
 export default App;
