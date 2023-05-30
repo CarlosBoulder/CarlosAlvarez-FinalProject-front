@@ -15,8 +15,10 @@
   },
   "dependencies": {
     "@fontsource/montserrat": "^5.0.1",
+    "@fortawesome/fontawesome-free": "^6.4.0",
     "@reduxjs/toolkit": "^1.9.5",
     "bootstrap": "^5.2.3",
+    "mdb-react-ui-kit": "^6.1.0",
     "mdb-ui-kit": "^6.3.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

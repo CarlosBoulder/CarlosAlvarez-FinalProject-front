@@ -9,7 +9,7 @@ const GlobalStyle = createGlobalStyle`
 }
 
 html {
-  font-family: "montserrat";
+  font-family: "montserrat", sans-serif;
 }
 
 body {
