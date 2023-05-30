@@ -1,15 +1,5 @@
-import Header from "../Header/Header";
-import ContainerStyled from "../shared/containerStyled";
+import Layout from "../Layout/Layout";
 
-const App = (): React.ReactElement => {
-  return (
-    <>
-      <ContainerStyled>
-        <Header />
-        <h1>boulderlab</h1>
-      </ContainerStyled>
-    </>
-  );
-};
+const App = (): React.ReactElement => <Layout />;
 
 export default App;
