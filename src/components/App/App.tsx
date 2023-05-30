@@ -1,5 +1,11 @@
+import ContainerStyled from "../shared/containerStyled";
+
 const App = (): React.ReactElement => {
-  return <h1>boulderlab</h1>;
+  return (
+    <ContainerStyled>
+      <h1>boulderlab</h1>
+    </ContainerStyled>
+  );
 };
 
 export default App;
