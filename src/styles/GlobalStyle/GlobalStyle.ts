@@ -33,11 +33,6 @@ h1{
   text-align: center;
 }
 
-h2{
-  font-size: 1.5rem;
-  padding-block: 10px;
-}
-
 ul {
   list-style: none;
   padding-left: 0;
