@@ -2,7 +2,7 @@ import {
   TokenStateStructure,
   loginActionCreator,
   userReducer,
-} from "./UserSlice";
+} from "./userSlice";
 
 describe("Given a userReducer reducer", () => {
   describe("When it receives an empty initial state", () => {
