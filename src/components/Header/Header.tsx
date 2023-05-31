@@ -1,4 +1,4 @@
-import Navbar from "../Navbar/Navbar";
+import Navigation from "../Navbar/Navbar";
 import HeaderStyled from "./HeaderStyled";
 
 const Header = (): React.ReactElement => {
@@ -10,7 +10,7 @@ const Header = (): React.ReactElement => {
         width={184}
         height={86}
       />
-      <Navbar />
+      <Navigation />
     </HeaderStyled>
   );
 };

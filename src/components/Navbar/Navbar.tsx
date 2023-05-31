@@ -1,24 +1,14 @@
-import {
-  MDBDropdown,
-  MDBDropdownMenu,
-  MDBDropdownToggle,
-  MDBDropdownItem,
-  MDBIcon,
-} from "mdb-react-ui-kit";
+import NavDropdown from "react-bootstrap/NavDropdown";
+import { AiOutlineMenu } from "react-icons/ai";
 
-const Navbar = (): React.ReactElement => {
+const Navigation = (): React.ReactElement => {
   return (
-    <MDBDropdown>
-      <MDBDropdownToggle color="white">
-        <MDBIcon fas icon="bars" />
-      </MDBDropdownToggle>
-      <MDBDropdownMenu>
-        <MDBDropdownItem link>Home</MDBDropdownItem>
-        <MDBDropdownItem link>Add boulder</MDBDropdownItem>
-        <MDBDropdownItem link>Logout</MDBDropdownItem>
-      </MDBDropdownMenu>
-    </MDBDropdown>
+    <NavDropdown title={<AiOutlineMenu />} id="basic-nav-dropdown">
+      <NavDropdown.Item href="#action/3.1">Home</NavDropdown.Item>
+      <NavDropdown.Item href="#action/3.2">Add boulder</NavDropdown.Item>
+      <NavDropdown.Item href="#action/3.3">Logout</NavDropdown.Item>
+    </NavDropdown>
   );
 };
 
-export default Navbar;
+export default Navigation;
