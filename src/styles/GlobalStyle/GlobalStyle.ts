@@ -56,6 +56,12 @@ a {
   color: inherit;
 }
 
+.btn-primary {
+  font-family: inherit;
+    background-color: #FFEC00;
+    color: #000;
+    border-color: #FFEC00;
+}
 
 `;
 
