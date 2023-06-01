@@ -61,6 +61,7 @@ a {
     background-color: #FFEC00;
     color: #000;
     border-color: #FFEC00;
+    --bs-btn-disabled-bg: #6C757D;
 }
 
 .burguer-menu{
