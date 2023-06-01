@@ -33,6 +33,8 @@ const LoginForm = ({ handleOnSubmit }: LoginFormProps): React.ReactElement => {
     setUserCredentials(userCredentials);
   };
 
+  const isDisabled = !userCredentials.username || !userCredentials.password;
+
   return (
     <LoginFormStyled className="form-container" onSubmit={handleOnClick}>
       <form autoComplete="off">
@@ -43,7 +45,6 @@ const LoginForm = ({ handleOnSubmit }: LoginFormProps): React.ReactElement => {
             className="form-control"
             id="username"
             onChange={onChangeUserData}
-            required
           />
         </div>
 
@@ -54,12 +55,15 @@ const LoginForm = ({ handleOnSubmit }: LoginFormProps): React.ReactElement => {
             className="form-control"
             id="password"
             onChange={onChangeUserData}
-            required
           />
         </div>
 
         <div className="d-grid">
-          <button type="submit" className="btn btn-primary">
+          <button
+            type="submit"
+            className="btn btn-primary"
+            disabled={isDisabled}
+          >
             Login
           </button>
         </div>

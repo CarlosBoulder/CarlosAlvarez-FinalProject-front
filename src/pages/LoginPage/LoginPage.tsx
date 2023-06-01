@@ -6,7 +6,7 @@ const LoginPage = (): React.ReactElement => {
   return (
     <LoginPageStyled>
       <h2>Welcome back! Please enter your credentials.</h2>
-      <LoginForm />
+      <LoginForm handleOnSubmit={() => ({})} />
     </LoginPageStyled>
   );
 };

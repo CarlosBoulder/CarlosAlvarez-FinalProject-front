@@ -57,7 +57,7 @@ a {
 }
 
 .btn-primary {
-  font-family: "montserrat";
+    font-family: "montserrat";
     background-color: #FFEC00;
     color: #000;
     border-color: #FFEC00;
