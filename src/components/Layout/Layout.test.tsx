@@ -1,16 +1,11 @@
-import { render, screen } from "@testing-library/react";
-import { ThemeProvider } from "styled-components";
-import theme from "../../styles/theme";
+import { screen } from "@testing-library/react";
 import Layout from "./Layout";
+import renderWithProviders from "../../utils/testUtils";
 
 describe("Given a Layout component", () => {
   describe("When it is rendered", () => {
     test("Then it should show boulderlab logo with the alternative text 'boulderlab logo'", () => {
-      render(
-        <ThemeProvider theme={theme}>
-          <Layout />
-        </ThemeProvider>
-      );
+      renderWithProviders(<Layout />);
 
       const expectedAlternativeText = "boulderlab logo";
 

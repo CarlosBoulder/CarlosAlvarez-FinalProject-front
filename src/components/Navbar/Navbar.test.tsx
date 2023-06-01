@@ -1,16 +1,11 @@
-import { render, screen } from "@testing-library/react";
-import { ThemeProvider } from "styled-components";
-import theme from "../../styles/theme";
+import { screen } from "@testing-library/react";
 import Navbar from "./Navbar";
+import renderWithProviders from "../../utils/testUtils";
 
 describe("Given a Navbar component", () => {
   describe("When it is rendered", () => {
     test("Then it should show a button", () => {
-      render(
-        <ThemeProvider theme={theme}>
-          <Navbar />
-        </ThemeProvider>
-      );
+      renderWithProviders(<Navbar />);
       expect(screen.getByRole("button")).toBeVisible();
     });
   });
