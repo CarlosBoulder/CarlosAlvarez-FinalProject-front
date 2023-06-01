@@ -1,14 +1,16 @@
 import { ThemeProvider } from "styled-components";
+import { vi } from "vitest";
 import LoginForm from "./LoginForm";
 import { render, screen } from "@testing-library/react";
 import theme from "../../styles/theme";
 
 describe("Given a LoginForm component", () => {
   describe("When it is rendered", () => {
+    const actionOnClick = vi.fn();
     test("Then it should show two inputs with the label 'Username' and 'Password'", () => {
       render(
         <ThemeProvider theme={theme}>
-          <LoginForm />
+          <LoginForm handleOnSubmit={actionOnClick} />
         </ThemeProvider>
       );
 
@@ -24,7 +26,7 @@ describe("Given a LoginForm component", () => {
     test("Then it should show a button with the text 'Login'", () => {
       render(
         <ThemeProvider theme={theme}>
-          <LoginForm />
+          <LoginForm handleOnSubmit={actionOnClick} />
         </ThemeProvider>
       );
 
