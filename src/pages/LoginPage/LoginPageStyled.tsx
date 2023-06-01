@@ -6,6 +6,8 @@ const LoginPageStyled = styled.section`
   align-items: center;
   flex-direction: column;
   font-size: 14px;
+  gap: 50px;
+  padding: 25px;
 `;
 
 export default LoginPageStyled;
