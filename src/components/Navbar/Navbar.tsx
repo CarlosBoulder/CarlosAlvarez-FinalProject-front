@@ -1,7 +1,7 @@
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { AiOutlineMenu } from "react-icons/ai";
 
-const Navigation = (): React.ReactElement => {
+const NavigationBar = (): React.ReactElement => {
   return (
     <NavDropdown
       className="burguer-menu"
@@ -15,4 +15,4 @@ const Navigation = (): React.ReactElement => {
   );
 };
 
-export default Navigation;
+export default NavigationBar;
