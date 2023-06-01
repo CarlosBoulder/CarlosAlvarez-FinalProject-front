@@ -1,18 +1,13 @@
-import { ThemeProvider } from "styled-components";
 import { vi } from "vitest";
+import { screen } from "@testing-library/react";
+import renderWithProviders from "../../utils/testUtils";
 import LoginForm from "./LoginForm";
-import { render, screen } from "@testing-library/react";
-import theme from "../../styles/theme";
 
 describe("Given a LoginForm component", () => {
   describe("When it is rendered", () => {
     const actionOnClick = vi.fn();
     test("Then it should show two inputs with the label 'Username' and 'Password'", () => {
-      render(
-        <ThemeProvider theme={theme}>
-          <LoginForm handleOnSubmit={actionOnClick} />
-        </ThemeProvider>
-      );
+      renderWithProviders(<LoginForm handleOnSubmit={actionOnClick} />);
 
       const expectedFirstLabelText = "Username";
       const expectedSecondLabelText = "Password";
@@ -24,11 +19,7 @@ describe("Given a LoginForm component", () => {
       expect(secondLabel).toBeInTheDocument();
     });
     test("Then it should show a button with the text 'Login'", () => {
-      render(
-        <ThemeProvider theme={theme}>
-          <LoginForm handleOnSubmit={actionOnClick} />
-        </ThemeProvider>
-      );
+      renderWithProviders(<LoginForm handleOnSubmit={actionOnClick} />);
 
       const button = screen.getByRole("button", { name: "Login" });
 
