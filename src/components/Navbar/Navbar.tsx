@@ -3,7 +3,11 @@ import { AiOutlineMenu } from "react-icons/ai";
 
 const Navigation = (): React.ReactElement => {
   return (
-    <NavDropdown title={<AiOutlineMenu />} id="basic-nav-dropdown">
+    <NavDropdown
+      className="burguer-menu"
+      title={<AiOutlineMenu />}
+      id="basic-nav-dropdown"
+    >
       <NavDropdown.Item href="#action/3.1">Home</NavDropdown.Item>
       <NavDropdown.Item href="#action/3.2">Add boulder</NavDropdown.Item>
       <NavDropdown.Item href="#action/3.3">Logout</NavDropdown.Item>

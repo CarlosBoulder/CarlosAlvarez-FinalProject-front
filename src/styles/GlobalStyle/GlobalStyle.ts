@@ -57,10 +57,19 @@ a {
 }
 
 .btn-primary {
-  font-family: inherit;
+  font-family: "montserrat";
     background-color: #FFEC00;
     color: #000;
     border-color: #FFEC00;
+}
+
+.burguer-menu{
+  width: 35px;
+  height: 35px;
+}
+
+.dropdown-toggle{
+  height: 100%;
 }
 
 `;
