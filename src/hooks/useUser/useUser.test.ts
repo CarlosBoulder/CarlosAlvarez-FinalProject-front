@@ -15,9 +15,9 @@ describe("Given a useUser custom hook", () => {
         result: {
           current: { getToken },
         },
-      } = renderHook(() => useUser(mockUserCredentials));
+      } = renderHook(() => useUser());
 
-      const token = await getToken();
+      const token = await getToken(mockUserCredentials);
 
       expect(token).toBe(tokenMock);
     });

@@ -7,7 +7,7 @@ interface UserCredentials {
 }
 
 interface LoginFormProps {
-  handleOnSubmit: () => void;
+  handleOnSubmit: (user: UserCredentials) => void;
 }
 
 const LoginForm = ({ handleOnSubmit }: LoginFormProps): React.ReactElement => {
@@ -27,16 +27,16 @@ const LoginForm = ({ handleOnSubmit }: LoginFormProps): React.ReactElement => {
     });
   };
 
-  const handleOnClick = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const onSubmitUserData = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
-    handleOnSubmit();
-    setUserCredentials(userCredentials);
+    handleOnSubmit(userCredentials);
+    setUserCredentials(initialUserCredentials);
   };
 
   const isDisabled = !userCredentials.username || !userCredentials.password;
 
   return (
-    <LoginFormStyled className="form-container" onSubmit={handleOnClick}>
+    <LoginFormStyled className="form-container" onSubmit={onSubmitUserData}>
       <form autoComplete="off">
         <div className="mb-3">
           <label htmlFor="username">Username</label>
@@ -45,6 +45,7 @@ const LoginForm = ({ handleOnSubmit }: LoginFormProps): React.ReactElement => {
             className="form-control"
             id="username"
             onChange={onChangeUserData}
+            value={userCredentials.username}
           />
         </div>
 
@@ -55,6 +56,7 @@ const LoginForm = ({ handleOnSubmit }: LoginFormProps): React.ReactElement => {
             className="form-control"
             id="password"
             onChange={onChangeUserData}
+            value={userCredentials.password}
           />
         </div>
 
