@@ -5,9 +5,14 @@ export interface TokenStateStructure {
   token: string;
 }
 
-const initialUserState: TokenStateStructure = {
+export interface UserStateStructure extends TokenStateStructure {
+  isLogged: boolean;
+}
+
+const initialUserState: UserStateStructure = {
   id: "",
   token: "",
+  isLogged: false,
 };
 
 const userSlice = createSlice({
@@ -15,14 +20,19 @@ const userSlice = createSlice({
   initialState: initialUserState,
   reducers: {
     loginUser: (
-      _currentUserState: TokenStateStructure,
+      _currentUserState: UserStateStructure,
       action: PayloadAction<TokenStateStructure>
-    ) => ({
+    ): UserStateStructure => ({
       ...action.payload,
+      isLogged: true,
     }),
+    logoutUser: () => initialUserState,
   },
 });
 
-export const { loginUser: loginActionCreator } = userSlice.actions;
+export const {
+  loginUser: loginActionCreator,
+  logoutUser: logoutActionCreator,
+} = userSlice.actions;
 
 export const userReducer = userSlice.reducer;
