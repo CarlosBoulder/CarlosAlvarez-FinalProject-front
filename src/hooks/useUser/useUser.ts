@@ -7,8 +7,8 @@ export interface UserCredentials {
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
-const useUser = (credential: UserCredentials) => {
-  const getToken = async (): Promise<string> => {
+const useUser = () => {
+  const getToken = async (credential: UserCredentials): Promise<string> => {
     const { data: data } = await axios.post(`${apiUrl}/user/login`, credential);
     return data.token;
   };
