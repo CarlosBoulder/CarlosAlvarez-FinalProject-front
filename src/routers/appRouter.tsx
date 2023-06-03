@@ -1,6 +1,7 @@
 import { Navigate, RouteObject, createBrowserRouter } from "react-router-dom";
 import App from "../components/App/App";
 import LoginPage from "../pages/LoginPage/LoginPage";
+import ListPage from "../pages/ListPage/ListPage";
 
 const routes: RouteObject[] = [
   {
@@ -17,7 +18,7 @@ const routes: RouteObject[] = [
       },
       {
         path: "/home",
-        element: <LoginPage />,
+        element: <ListPage />,
       },
       {
         path: "*",
