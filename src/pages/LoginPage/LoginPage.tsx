@@ -24,7 +24,6 @@ const LoginPage = (): React.ReactElement => {
         id: decodedToken.sub,
         token: obtainedToken,
       };
-
       dispatch(loginActionCreator(tokenInfo));
 
       setToken("token", obtainedToken);
