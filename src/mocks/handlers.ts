@@ -1,4 +1,5 @@
 import { rest } from "msw";
+import bouldersMock from "./bouldersMock";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -8,5 +9,9 @@ export const tokenMock =
 export const handlers = [
   rest.post(`${apiUrl}/user/login`, (_req, res, ctx) => {
     return res(ctx.status(200), ctx.json({ token: tokenMock }));
+  }),
+
+  rest.get(`${apiUrl}/boulders/all`, (_req, res, ctx) => {
+    return res(ctx.status(200), ctx.json({ boulders: bouldersMock }));
   }),
 ];
