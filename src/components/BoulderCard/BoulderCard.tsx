@@ -5,18 +5,26 @@ interface BoulderCardProps {
 }
 
 const BoulderCard = ({
-  boulder: { name, img, country, crag, description, grade, spot },
+  boulder: { name, img, country, crag, grade, spot },
 }: BoulderCardProps): React.ReactElement => {
   return (
-    <article className="boulder-card">
-      <img loading="lazy" src={img} alt={name} width={300} height={300} />
-      <h3>{name}</h3>
-      <p>{description}</p>
-      <p>{grade}</p>
-      <p>{crag}</p>
-      <p>{spot}</p>
-      <p>{country}</p>
-    </article>
+    <>
+      <div className="d-flex align-items-center">
+        <img src={img} alt="" style={{ width: "45px", height: "45px" }} />
+        <div className="ms-3">
+          <p className="fw-bold mb-1 small">
+            <h3>
+              {name} {grade}
+            </h3>
+          </p>
+          <p className="text-muted mb-0 small">
+            {crag}, {spot}, {country}
+          </p>
+        </div>
+      </div>
+
+      <hr style={{ margin: "10px 0", width: "100%" }} />
+    </>
   );
 };
 
