@@ -1,6 +1,6 @@
 import BoulderStructure from "../../store/types";
 
-interface BoulderListProps {
+export interface BoulderListProps {
   boulders: BoulderStructure[];
 }
 
