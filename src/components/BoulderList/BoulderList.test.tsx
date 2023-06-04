@@ -11,7 +11,9 @@ describe("BoulderList", () => {
       renderWithProviders(<BoulderList boulders={boulders} />);
 
       boulders.forEach((boulder) => {
-        expect(screen.getByText(boulder.name)).toBeInTheDocument();
+        expect(
+          screen.getByText(`${boulder.name} ${boulder.grade}`)
+        ).toBeInTheDocument();
       });
     });
   });

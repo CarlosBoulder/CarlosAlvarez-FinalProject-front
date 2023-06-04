@@ -12,7 +12,7 @@ describe("Given a BoulderCard component", () => {
       renderWithProviders(<BoulderCard boulder={boulder} />);
 
       const expectedName = screen.getByRole("heading", {
-        name: bouldersMock[0].name,
+        name: `${bouldersMock[0].name} ${bouldersMock[0].grade}`,
       });
 
       expect(expectedName).toBeInTheDocument();
