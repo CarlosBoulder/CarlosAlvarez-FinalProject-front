@@ -8,7 +8,7 @@ const BoulderCard = ({
   boulder: { name, img, country, crag, description, grade, spot },
 }: BoulderCardProps): React.ReactElement => {
   return (
-    <article className="user-card">
+    <article className="boulder-card">
       <img loading="lazy" src={img} alt={name} width={300} height={300} />
       <h3>{name}</h3>
       <p>{description}</p>
