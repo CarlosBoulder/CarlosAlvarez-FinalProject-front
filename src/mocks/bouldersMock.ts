@@ -9,7 +9,7 @@ const bouldersMock: BoulderStructure[] = [
     country: "España",
     description: "Sit start from small crimps",
     grade: "7A",
-    _id: "123",
+    id: "123",
   },
 ];
 
