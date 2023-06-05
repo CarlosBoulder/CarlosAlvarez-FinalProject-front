@@ -20,4 +20,8 @@ export const errorHandlers = [
   rest.post(`${apiUrl}/user/login`, (_req, res, ctx) => {
     return res(ctx.status(401));
   }),
+
+  rest.get(`${apiUrl}/boulders/all`, (_req, res, ctx) => {
+    return res(ctx.status(500), ctx.json({ boulders: [] }));
+  }),
 ];

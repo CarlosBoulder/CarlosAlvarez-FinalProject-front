@@ -2,6 +2,8 @@ import { renderHook } from "@testing-library/react";
 import useBoulders from "./useBoulders";
 import bouldersMock from "../../mocks/bouldersMock";
 import { wrapper } from "../../utils/testUtils";
+import { server } from "../../mocks/server";
+import { errorHandlers } from "../../mocks/handlers";
 
 describe("Given a useBoulders custom hook", () => {
   describe("When it calls getBoulders with a valid token", () => {
@@ -19,6 +21,23 @@ describe("Given a useBoulders custom hook", () => {
       const expectedResponse = { boulders: bouldersMock };
 
       expect(boulders).toStrictEqual(expectedResponse);
+    });
+  });
+  describe("When it calls getBoulders with invalid token", () => {
+    test("Then it should return throw error", () => {
+      server.resetHandlers(...errorHandlers);
+
+      const tokenMock = "invalidToken";
+
+      const {
+        result: {
+          current: { getBoulders },
+        },
+      } = renderHook(() => useBoulders(tokenMock), { wrapper: wrapper });
+
+      const boulders = getBoulders();
+
+      expect(boulders).rejects.toThrowError();
     });
   });
 });
