@@ -9,7 +9,7 @@ const BoulderList = ({ boulders }: BoulderListProps): React.ReactElement => {
   return (
     <ul className="boulder-list">
       {boulders.map((boulder) => (
-        <li key={boulder._id}>
+        <li key={boulder.id}>
           <BoulderCard boulder={boulder} />
         </li>
       ))}

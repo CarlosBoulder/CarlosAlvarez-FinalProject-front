@@ -6,7 +6,7 @@ interface BoulderStructure {
   country: string;
   description: string;
   grade: string;
-  _id: string;
+  id: string;
 }
 
 export default BoulderStructure;

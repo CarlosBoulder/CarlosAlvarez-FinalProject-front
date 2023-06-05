@@ -12,11 +12,9 @@ const BoulderCard = ({
       <div className="d-flex align-items-center">
         <img src={img} alt="" style={{ width: "45px", height: "45px" }} />
         <div className="ms-3">
-          <p className="fw-bold mb-1 small">
-            <h3>
-              {name} {grade}
-            </h3>
-          </p>
+          <h3 className="fw-bold mb-1 small">
+            {name} {grade}
+          </h3>
           <p className="text-muted mb-0 small">
             {crag}, {spot}, {country}
           </p>

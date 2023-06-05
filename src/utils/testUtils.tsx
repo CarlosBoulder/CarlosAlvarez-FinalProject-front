@@ -28,4 +28,10 @@ const renderWithProviders = (
   render(ui, { wrapper: Wrapper });
 };
 
+export const wrapper = ({
+  children,
+}: PropsWithChildren): React.ReactElement => {
+  return <Provider store={store}>{children}</Provider>;
+};
+
 export default renderWithProviders;

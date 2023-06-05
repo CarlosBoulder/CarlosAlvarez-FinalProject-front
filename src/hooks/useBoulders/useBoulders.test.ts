@@ -1,6 +1,7 @@
 import { renderHook } from "@testing-library/react";
 import useBoulders from "./useBoulders";
 import bouldersMock from "../../mocks/bouldersMock";
+import { wrapper } from "../../utils/testUtils";
 
 describe("Given a useBoulders custom hook", () => {
   describe("When it calls getBoulders with a valid token", () => {
@@ -12,7 +13,7 @@ describe("Given a useBoulders custom hook", () => {
         result: {
           current: { getBoulders },
         },
-      } = renderHook(() => useBoulders(tokenMock));
+      } = renderHook(() => useBoulders(tokenMock), { wrapper: wrapper });
 
       const boulders = await getBoulders();
       const expectedResponse = { boulders: bouldersMock };
