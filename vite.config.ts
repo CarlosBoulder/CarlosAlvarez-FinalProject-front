@@ -23,6 +23,7 @@ export default defineConfig({
         "src/styles/GlobalStyle",
         "src/store/*",
         "src/routers/*",
+        "**/App/*",
       ],
     },
   },

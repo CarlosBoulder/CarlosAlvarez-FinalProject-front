@@ -5,7 +5,7 @@ const Loader = (): React.ReactElement => {
   return (
     <LoaderStyled>
       <Spinner animation="border" role="status">
-        <span className="visually-hidden">Loading...</span>
+        <span className="visually-hidden"></span>
       </Spinner>
       <span>Loading...</span>
     </LoaderStyled>
