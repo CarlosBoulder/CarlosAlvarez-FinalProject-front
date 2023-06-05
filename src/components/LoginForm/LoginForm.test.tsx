@@ -82,7 +82,7 @@ describe("Given a LoginForm component", () => {
   });
 
   describe("When it is rendered, the credentials are valid and the login button is clicked", () => {
-    test("Then it should claa the actionOnClick function", async () => {
+    test("Then it should call the actionOnClick function", async () => {
       renderWithProviders(<LoginForm handleOnSubmit={actionOnClick} />);
 
       const userLabel = screen.getByLabelText(expectedFirstLabelText);
