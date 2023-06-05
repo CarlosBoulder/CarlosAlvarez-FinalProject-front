@@ -7,6 +7,7 @@ import useUser, { UserCredentials } from "../../hooks/useUser/useUser";
 import { loginActionCreator } from "../../store/user/userSlice";
 import { useAppDispatch } from "../../store";
 import useLocalStorage from "../../hooks/useLocalStorage/useLocalStorage";
+import Feedback from "../../components/Feedback/Feedback";
 
 const LoginPage = (): React.ReactElement => {
   const { getToken } = useUser();
@@ -33,10 +34,13 @@ const LoginPage = (): React.ReactElement => {
   };
 
   return (
-    <LoginPageStyled>
-      <h2>Welcome back! Please enter your credentials.</h2>
-      <LoginForm handleOnSubmit={handleOnSubmit} />
-    </LoginPageStyled>
+    <>
+      <LoginPageStyled>
+        <h2>Welcome back! Please enter your credentials.</h2>
+        <LoginForm handleOnSubmit={handleOnSubmit} />
+      </LoginPageStyled>
+      <Feedback />
+    </>
   );
 };
 
