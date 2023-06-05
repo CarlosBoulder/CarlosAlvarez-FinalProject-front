@@ -23,7 +23,7 @@ const Feedback = ({
           onClick={actionOnClick}
         ></Modal.Header>
         <Modal.Body>
-          <p>{text}</p>
+          <h4>{text}</h4>
         </Modal.Body>
       </Modal.Dialog>
     </div>
