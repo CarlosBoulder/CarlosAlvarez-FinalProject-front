@@ -26,8 +26,8 @@ describe("Given a LoginPage component", () => {
     });
   });
 
-  describe("New describe", () => {
-    test("calls the necessary functions on form submission", async () => {
+  describe("When it is rendered", () => {
+    test("Then it should show login form labels", async () => {
       const mockDecodedToken = {
         sub: "mockUserId",
         name: "mockUserName",
