@@ -3,7 +3,9 @@ import { useCallback } from "react";
 import { BoulderState } from "../../store/boulder/boulderSlice";
 import { useAppDispatch } from "../../store";
 import {
+  hideFeedbackActionCreator,
   hideLoadingActionCreator,
+  showFeedbackActionCreator,
   showLoadingActionCreator,
 } from "../../store/ui/uiSlice";
 
@@ -26,6 +28,17 @@ const useBoulders = (token: string) => {
       return boulders;
     } catch (error) {
       dispatch(hideLoadingActionCreator());
+      dispatch(
+        showFeedbackActionCreator({
+          isError: true,
+          message: "Error trying to get boulders",
+        })
+      );
+
+      setTimeout(() => {
+        dispatch(hideFeedbackActionCreator());
+      }, 1000);
+
       throw new Error("Error trying to get boulders");
     }
   }, [token, dispatch]);

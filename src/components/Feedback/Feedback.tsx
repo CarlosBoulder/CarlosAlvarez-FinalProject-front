@@ -12,10 +12,7 @@ const Feedback = ({
   text,
 }: FeedbackProps): React.ReactElement => {
   return (
-    <div
-      className="modal show"
-      style={{ display: "block", position: "initial" }}
-    >
+    <div className="modal show d-block position-absolute top-50">
       <Modal.Dialog>
         <Modal.Header
           closeButton
