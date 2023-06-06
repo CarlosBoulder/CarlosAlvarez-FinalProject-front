@@ -2,6 +2,32 @@
 
 BoulderLab is an app where you can access a list of boulders around the world. You can also manage the list adding, updating and removing them once you are logged in.
 
+# Tech stack
+
+-TypeScript
+
+-React
+
+-Redux Toolkit
+
+-Styled components
+
+-Axios
+
+-MSW
+
+-Jest & Vite
+
+-React testing library
+
+# Demo
+
+https://carlos-alvarez-final-project-front-23.netlify.app/
+
+# Author
+
+https://github.com/CarlosBoulder
+
 # EndPoints
 
 **_GET https://carlos-alvarez-final-project-back-202304.onrender.com/ping_**
