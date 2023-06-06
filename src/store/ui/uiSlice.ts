@@ -29,6 +29,12 @@ const uiSlice = createSlice({
       isError: action.payload.isError,
       message: action.payload.message,
     }),
+
+    hideFeedback: (currentState: UiStateStructure): UiStateStructure => ({
+      ...currentState,
+      isError: false,
+      message: "",
+    }),
   },
 });
 
@@ -36,6 +42,7 @@ export const {
   showLoading: showLoadingActionCreator,
   hideLoading: hideLoadingActionCreator,
   showFeedback: showFeedbackActionCreator,
+  hideFeedback: hideFeedbackActionCreator,
 } = uiSlice.actions;
 
 export const uiReducer = uiSlice.reducer;
