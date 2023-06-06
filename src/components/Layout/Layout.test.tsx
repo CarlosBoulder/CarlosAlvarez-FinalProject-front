@@ -8,6 +8,8 @@ describe("Given a Layout component", () => {
       renderWithProviders(<Layout />, {
         uiStore: {
           isLoading: true,
+          isError: false,
+          message: "",
         },
       });
 

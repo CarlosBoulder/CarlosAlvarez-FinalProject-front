@@ -1,25 +1,28 @@
-import {
-  UiStateStructure,
-  hideLoadingActionCreator,
-  uiReducer,
-} from "./uiSlice";
+import { UiStateStructure } from "../types";
+import { showLoadingActionCreator, uiReducer } from "../uiSlice";
 
 describe("Given a showLoadinReducer reducer", () => {
   describe("When it receives isLoading state as false", () => {
     test("Then it should return a new state isLoading true", () => {
       const initialState: UiStateStructure = {
-        isLoading: true,
+        isLoading: false,
+        isError: false,
+        message: "",
       };
 
       const newState: UiStateStructure = {
-        isLoading: false,
+        isLoading: true,
+        isError: false,
+        message: "",
       };
 
       const expectedState: UiStateStructure = {
         isLoading: newState.isLoading,
+        isError: false,
+        message: "",
       };
 
-      const actionCreator = hideLoadingActionCreator();
+      const actionCreator = showLoadingActionCreator();
 
       const newExpectedState = uiReducer(initialState, actionCreator);
 

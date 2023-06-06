@@ -2,6 +2,7 @@ import { renderHook } from "@testing-library/react";
 import useUser, { UserCredentials } from "./useUser";
 import { server } from "../../mocks/server";
 import { errorHandlers } from "../../mocks/handlers";
+import { wrapper } from "../../utils/testUtils";
 
 describe("Given a useUser custom hook", () => {
   const mockUserCredentials: UserCredentials = {
@@ -17,7 +18,7 @@ describe("Given a useUser custom hook", () => {
         result: {
           current: { getToken },
         },
-      } = renderHook(() => useUser());
+      } = renderHook(() => useUser(), { wrapper: wrapper });
 
       const token = await getToken(mockUserCredentials);
 
@@ -33,7 +34,7 @@ describe("Given a useUser custom hook", () => {
         result: {
           current: { getToken },
         },
-      } = renderHook(() => useUser());
+      } = renderHook(() => useUser(), { wrapper: wrapper });
 
       const getTokenFunction = getToken(mockUserCredentials);
 
