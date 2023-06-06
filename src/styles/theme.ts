@@ -5,7 +5,7 @@ const theme: DefaultTheme = {
     primary: "#ffec00",
   },
   fonts: {
-    fontFamily: "Montserrat, sans-serif;",
+    fontFamily: "Montserrat, sans-serif",
   },
 };
 
