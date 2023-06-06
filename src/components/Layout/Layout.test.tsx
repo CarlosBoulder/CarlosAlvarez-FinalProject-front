@@ -5,7 +5,11 @@ import renderWithProviders from "../../utils/testUtils";
 describe("Given a Layout component", () => {
   describe("When it is rendered", () => {
     test("Then it should show boulderlab logo with the alternative text 'boulderlab logo'", () => {
-      renderWithProviders(<Layout />);
+      renderWithProviders(<Layout />, {
+        uiStore: {
+          isLoading: true,
+        },
+      });
 
       const expectedAlternativeText = "boulderlab logo";
 
