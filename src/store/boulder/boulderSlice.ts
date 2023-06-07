@@ -38,4 +38,4 @@ export const {
   deleteBoulders: deleteBouldersActionCreator,
 } = boulderSlice.actions;
 
-export const loadBouldersReducer = boulderSlice.reducer;
+export const bouldersReducer = boulderSlice.reducer;

@@ -3,12 +3,12 @@ import { combineReducers } from "@reduxjs/toolkit";
 import { configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { userReducer } from "./user/userSlice";
-import { loadBouldersReducer } from "./boulder/boulderSlice";
+import { bouldersReducer } from "./boulder/boulderSlice";
 import { uiReducer } from "./ui/uiSlice";
 
 const rootReducer = combineReducers({
   userStore: userReducer,
-  boulderStore: loadBouldersReducer,
+  boulderStore: bouldersReducer,
   uiStore: uiReducer,
 });
 
