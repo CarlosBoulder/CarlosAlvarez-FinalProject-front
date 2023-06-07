@@ -14,9 +14,9 @@ const Layout = (): React.ReactElement => {
     <>
       <ContainerStyled>
         <Header />
+        <Outlet />
         {isLoading && <Loader />}
         {isError && <Feedback text={"Something went wrong"} />}
-        <Outlet />
       </ContainerStyled>
     </>
   );
