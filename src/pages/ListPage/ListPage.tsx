@@ -15,7 +15,9 @@ const ListPage = (): React.ReactElement => {
   useEffect(() => {
     (async () => {
       const boulders = await getBoulders();
-      dispatch(loadBouldersActionCreator(boulders.boulders));
+      if (boulders) {
+        dispatch(loadBouldersActionCreator(boulders.boulders));
+      }
     })();
   }, [dispatch, getBoulders]);
 

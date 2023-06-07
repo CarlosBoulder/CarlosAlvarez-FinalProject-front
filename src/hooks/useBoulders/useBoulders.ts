@@ -12,7 +12,9 @@ const apiUrl = import.meta.env.VITE_API_URL;
 
 const useBoulders = (token: string) => {
   const dispatch = useAppDispatch();
-  const getBoulders = useCallback(async (): Promise<BoulderState> => {
+  const getBoulders = useCallback(async (): Promise<
+    BoulderState | undefined
+  > => {
     dispatch(showLoadingActionCreator());
 
     try {
@@ -33,8 +35,6 @@ const useBoulders = (token: string) => {
           message: "Error trying to get boulders",
         })
       );
-
-      throw new Error("Error trying to get boulders");
     }
   }, [token, dispatch]);
 
