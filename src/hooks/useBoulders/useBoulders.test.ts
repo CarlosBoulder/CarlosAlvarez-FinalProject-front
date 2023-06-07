@@ -4,6 +4,7 @@ import bouldersMock from "../../mocks/bouldersMock";
 import { wrapper } from "../../utils/testUtils";
 import { server } from "../../mocks/server";
 import { errorHandlers } from "../../mocks/handlers";
+import { store } from "../../store";
 
 describe("Given a useBoulders custom hook", () => {
   describe("When it calls getBoulders with a valid token", () => {
@@ -24,7 +25,7 @@ describe("Given a useBoulders custom hook", () => {
     });
   });
   describe("When it calls getBoulders with invalid token", () => {
-    test("Then it should return throw error", () => {
+    test("Then it should return throw error", async () => {
       server.resetHandlers(...errorHandlers);
 
       const tokenMock = "invalidToken";
@@ -35,9 +36,11 @@ describe("Given a useBoulders custom hook", () => {
         },
       } = renderHook(() => useBoulders(tokenMock), { wrapper: wrapper });
 
-      const boulders = getBoulders();
+      await getBoulders();
 
-      expect(boulders).rejects.toThrowError();
+      const message = store.getState().uiStore.message;
+
+      expect(message).toBe("Error trying to get boulders");
     });
   });
 });
