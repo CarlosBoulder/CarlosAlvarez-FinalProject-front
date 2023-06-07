@@ -1,4 +1,6 @@
 import { Modal } from "react-bootstrap";
+import { hideFeedbackActionCreator } from "../../store/ui/uiSlice";
+import { useAppDispatch } from "../../store";
 
 interface FeedbackProps {
   classname?: string;
@@ -11,8 +13,17 @@ const Feedback = ({
   classname,
   text,
 }: FeedbackProps): React.ReactElement => {
+  const dispatch = useAppDispatch();
+  const hideOnClick = () => dispatch(hideFeedbackActionCreator());
+
   return (
-    <div className="modal show d-block position-absolute top-50">
+    <div
+      className="modal show d-block position-absolute top-50"
+      role="button"
+      tabIndex={0}
+      onClick={hideOnClick}
+      onKeyPress={hideOnClick}
+    >
       <Modal.Dialog>
         <Modal.Header
           closeButton

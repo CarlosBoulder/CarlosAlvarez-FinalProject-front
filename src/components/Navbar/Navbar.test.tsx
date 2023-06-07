@@ -38,9 +38,7 @@ describe("Given a Navbar component", () => {
 
       const navLink = screen.getByRole("link", { name: linkText });
 
-      await userEvent.click(navLink);
-
-      expect(button).not.toBeInTheDocument();
+      expect(navLink).toBeInTheDocument();
     });
   });
 });

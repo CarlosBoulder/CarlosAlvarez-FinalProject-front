@@ -1,8 +1,9 @@
 import axios from "axios";
 import { useAppDispatch } from "../../store";
 import {
-  hideFeedbackActionCreator,
+  hideLoadingActionCreator,
   showFeedbackActionCreator,
+  showLoadingActionCreator,
 } from "../../store/ui/uiSlice";
 
 export interface UserCredentials {
@@ -14,27 +15,29 @@ const apiUrl = import.meta.env.VITE_API_URL;
 
 const useUser = () => {
   const dispatch = useAppDispatch();
-  const getToken = async (credential: UserCredentials): Promise<string> => {
+  const getToken = async (
+    credential: UserCredentials
+  ): Promise<string | undefined> => {
+    dispatch(showLoadingActionCreator());
+
     try {
       const { data: data } = await axios.post(
         `${apiUrl}/user/login`,
         credential
       );
 
+      dispatch(hideLoadingActionCreator());
+
       return data.token;
     } catch (error) {
+      dispatch(hideLoadingActionCreator());
+
       dispatch(
         showFeedbackActionCreator({
           isError: true,
-          message: "",
+          message: "Wrong Credentials",
         })
       );
-
-      setTimeout(() => {
-        dispatch(hideFeedbackActionCreator());
-      }, 1000);
-
-      throw new Error("Wrong Credentials");
     }
   };
 
