@@ -38,7 +38,38 @@ const useBoulders = (token: string) => {
     }
   }, [token, dispatch]);
 
-  return { getBoulders };
+  const deleteBoulder = useCallback(
+    async (boulderId: string): Promise<void> => {
+      dispatch(showLoadingActionCreator());
+
+      try {
+        await axios.delete(`${apiUrl}/boulders/${boulderId}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        dispatch(hideLoadingActionCreator());
+        dispatch(
+          showFeedbackActionCreator({
+            isError: false,
+            message: "Boulder deleted",
+          })
+        );
+      } catch (error) {
+        dispatch(hideLoadingActionCreator());
+        dispatch(
+          showFeedbackActionCreator({
+            isError: true,
+            message: "Error trying to delete boulder",
+          })
+        );
+      }
+    },
+    [token, dispatch]
+  );
+
+  return { getBoulders, deleteBoulder };
 };
 
 export default useBoulders;
