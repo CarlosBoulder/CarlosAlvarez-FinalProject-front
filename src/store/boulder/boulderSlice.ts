@@ -20,9 +20,22 @@ export const boulderSlice = createSlice({
       ...currentState,
       boulders: [...action.payload],
     }),
+
+    deleteBoulders: (
+      currenState,
+      action: PayloadAction<string>
+    ): BoulderState => ({
+      ...currenState,
+      boulders: currenState.boulders.filter(
+        (boulder) => boulder.id !== action.payload
+      ),
+    }),
   },
 });
 
-export const { loadBoulders: loadBouldersActionCreator } = boulderSlice.actions;
+export const {
+  loadBoulders: loadBouldersActionCreator,
+  deleteBoulders: deleteBouldersActionCreator,
+} = boulderSlice.actions;
 
-export const loadBouldersReducer = boulderSlice.reducer;
+export const bouldersReducer = boulderSlice.reducer;

@@ -22,7 +22,7 @@ const Feedback = ({
       role="button"
       tabIndex={0}
       onClick={hideOnClick}
-      onKeyPress={hideOnClick}
+      onKeyDown={hideOnClick}
     >
       <Modal.Dialog>
         <Modal.Header

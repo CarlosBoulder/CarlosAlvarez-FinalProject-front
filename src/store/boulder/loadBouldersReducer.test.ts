@@ -3,7 +3,7 @@ import BoulderStructure from "../types";
 import {
   BoulderState,
   loadBouldersActionCreator,
-  loadBouldersReducer,
+  bouldersReducer,
 } from "./boulderSlice";
 
 describe("Given a loadBoulders reducer", () => {
@@ -21,10 +21,7 @@ describe("Given a loadBoulders reducer", () => {
 
       const loadBouldersAction = loadBouldersActionCreator(boulders);
 
-      const newBoulderState = loadBouldersReducer(
-        currentState,
-        loadBouldersAction
-      );
+      const newBoulderState = bouldersReducer(currentState, loadBouldersAction);
 
       expect(newBoulderState).toStrictEqual(expectedBouldersState);
     });
