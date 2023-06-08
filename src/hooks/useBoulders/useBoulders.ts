@@ -39,15 +39,17 @@ const useBoulders = (token: string) => {
   }, [token, dispatch]);
 
   const deleteBoulder = useCallback(
-    async (boulderId: string): Promise<void> => {
+    async (boulderId: string): Promise<number | undefined> => {
       dispatch(showLoadingActionCreator());
-
       try {
-        await axios.delete(`${apiUrl}/boulders/${boulderId}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const { status } = await axios.delete(
+          `${apiUrl}/boulders/${boulderId}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
 
         dispatch(hideLoadingActionCreator());
         dispatch(
@@ -56,6 +58,7 @@ const useBoulders = (token: string) => {
             message: "Boulder deleted",
           })
         );
+        return status;
       } catch (error) {
         dispatch(hideLoadingActionCreator());
         dispatch(

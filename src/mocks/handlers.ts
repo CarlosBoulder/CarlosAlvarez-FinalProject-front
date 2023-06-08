@@ -14,6 +14,10 @@ export const handlers = [
   rest.get(`${apiUrl}/boulders/all`, (_req, res, ctx) => {
     return res(ctx.status(200), ctx.json({ boulders: bouldersMock }));
   }),
+
+  rest.delete(`${apiUrl}/boulders/:boulderId`, (_req, res, ctx) => {
+    return res(ctx.status(200), ctx.json({ message: "Boulder deleted" }));
+  }),
 ];
 
 export const errorHandlers = [
@@ -23,5 +27,9 @@ export const errorHandlers = [
 
   rest.get(`${apiUrl}/boulders/all`, (_req, res, ctx) => {
     return res(ctx.status(500), ctx.json({ boulders: [] }));
+  }),
+
+  rest.delete(`${apiUrl}/boulders/:boulderId`, (_req, res, ctx) => {
+    return res(ctx.status(404), ctx.json({ message: "Boulder not found" }));
   }),
 ];

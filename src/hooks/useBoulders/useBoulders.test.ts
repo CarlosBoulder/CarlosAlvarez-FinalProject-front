@@ -44,3 +44,44 @@ describe("Given a useBoulders custom hook", () => {
     });
   });
 });
+
+describe("Given a useBoulders custom hook", () => {
+  const tokenMock =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDcwNWYyOTU0YWVhZTkyNWQ0NmQ4ZDQiLCJuYW1lIjoiYWRtaW4iLCJpYXQiOjE2ODU3OTE5NjQsImV4cCI6MTY4NTg3ODM2NH0.ShrYNKznLbxIvDdGvBgdy8zsIIL96gASjJddRyIBauY";
+
+  describe("When it calls deleteBoulders with a valid token and existing id", () => {
+    test("Then it should return a 200 status", async () => {
+      const {
+        result: {
+          current: { deleteBoulder },
+        },
+      } = renderHook(() => useBoulders(tokenMock), { wrapper: wrapper });
+
+      const boulderId = bouldersMock[0].id;
+
+      const status = 200;
+
+      const expectedStatus = await deleteBoulder(boulderId);
+
+      expect(status).toBe(expectedStatus);
+    });
+  });
+
+  describe("When it calls deleteBoulders with a valid token and no existing id", () => {
+    test("Then it should return undefined", async () => {
+      server.resetHandlers(...errorHandlers);
+
+      const {
+        result: {
+          current: { deleteBoulder },
+        },
+      } = renderHook(() => useBoulders(tokenMock), { wrapper: wrapper });
+
+      const boulderId = "1589";
+
+      const expectedStatus = await deleteBoulder(boulderId);
+
+      expect(expectedStatus).toBeUndefined();
+    });
+  });
+});
