@@ -1,6 +1,9 @@
 import axios from "axios";
 import { useCallback } from "react";
-import { BoulderState } from "../../store/boulder/boulderSlice";
+import {
+  BoulderState,
+  deleteBouldersActionCreator,
+} from "../../store/boulder/boulderSlice";
 import { useAppDispatch } from "../../store";
 import {
   hideLoadingActionCreator,
@@ -12,6 +15,7 @@ const apiUrl = import.meta.env.VITE_API_URL;
 
 const useBoulders = (token: string) => {
   const dispatch = useAppDispatch();
+
   const getBoulders = useCallback(async (): Promise<
     BoulderState | undefined
   > => {
@@ -58,6 +62,8 @@ const useBoulders = (token: string) => {
             message: "Boulder deleted",
           })
         );
+        dispatch(deleteBouldersActionCreator(boulderId));
+
         return status;
       } catch (error) {
         dispatch(hideLoadingActionCreator());

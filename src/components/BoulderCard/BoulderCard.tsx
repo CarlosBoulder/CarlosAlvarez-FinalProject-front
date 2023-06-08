@@ -1,10 +1,12 @@
 import BoulderStructure from "../../store/types";
 interface BoulderCardProps {
   boulder: BoulderStructure;
+  actionOnClick: (boulderId: string) => void;
 }
 
 const BoulderCard = ({
-  boulder: { name, img, country, crag, grade, spot },
+  boulder: { name, img, country, crag, grade, spot, id },
+  actionOnClick,
 }: BoulderCardProps): React.ReactElement => {
   return (
     <>
@@ -21,7 +23,7 @@ const BoulderCard = ({
             </p>
           </div>
         </div>
-        <button className="card-button">
+        <button className="card-button" onClick={() => actionOnClick(id)}>
           <img src="/images/trash.svg" alt="trash icon" />
         </button>
       </div>
