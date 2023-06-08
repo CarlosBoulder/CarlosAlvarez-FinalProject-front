@@ -75,6 +75,11 @@ Return:
     ]
 }`
 
+**_DELETE https://carlos-alvarez-final-project-back-202304.onrender.com/boulders/boulderId_**
+Delete boulder with the boulder Id
+
+Authorization: Bearer Token
+
 # Boilerplate for React apps
 
 With Vite + TypeScript
