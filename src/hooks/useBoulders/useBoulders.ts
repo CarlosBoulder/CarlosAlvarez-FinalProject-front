@@ -1,6 +1,9 @@
 import axios from "axios";
 import { useCallback } from "react";
-import { BoulderState } from "../../store/boulder/boulderSlice";
+import {
+  BoulderState,
+  deleteBouldersActionCreator,
+} from "../../store/boulder/boulderSlice";
 import { useAppDispatch } from "../../store";
 import {
   hideLoadingActionCreator,
@@ -12,6 +15,7 @@ const apiUrl = import.meta.env.VITE_API_URL;
 
 const useBoulders = (token: string) => {
   const dispatch = useAppDispatch();
+
   const getBoulders = useCallback(async (): Promise<
     BoulderState | undefined
   > => {
@@ -38,7 +42,43 @@ const useBoulders = (token: string) => {
     }
   }, [token, dispatch]);
 
-  return { getBoulders };
+  const deleteBoulder = useCallback(
+    async (boulderId: string): Promise<number | undefined> => {
+      dispatch(showLoadingActionCreator());
+      try {
+        const { status } = await axios.delete(
+          `${apiUrl}/boulders/${boulderId}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        dispatch(hideLoadingActionCreator());
+        dispatch(
+          showFeedbackActionCreator({
+            isError: false,
+            message: "Boulder deleted",
+          })
+        );
+        dispatch(deleteBouldersActionCreator(boulderId));
+
+        return status;
+      } catch (error) {
+        dispatch(hideLoadingActionCreator());
+        dispatch(
+          showFeedbackActionCreator({
+            isError: true,
+            message: "Error trying to delete boulder",
+          })
+        );
+      }
+    },
+    [token, dispatch]
+  );
+
+  return { getBoulders, deleteBoulder };
 };
 
 export default useBoulders;

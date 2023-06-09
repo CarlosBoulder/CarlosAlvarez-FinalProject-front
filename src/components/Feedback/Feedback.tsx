@@ -1,6 +1,7 @@
 import { Modal } from "react-bootstrap";
 import { hideFeedbackActionCreator } from "../../store/ui/uiSlice";
 import { useAppDispatch } from "../../store";
+import FeedbackStyled from "./FeedbackStyled";
 
 interface FeedbackProps {
   classname?: string;
@@ -17,8 +18,8 @@ const Feedback = ({
   const hideOnClick = () => dispatch(hideFeedbackActionCreator());
 
   return (
-    <div
-      className="modal show d-block position-absolute top-50"
+    <FeedbackStyled
+      className="modal show d-block position-absolute"
       role="button"
       tabIndex={0}
       onClick={hideOnClick}
@@ -34,7 +35,7 @@ const Feedback = ({
           <h4>{text}</h4>
         </Modal.Body>
       </Modal.Dialog>
-    </div>
+    </FeedbackStyled>
   );
 };
 

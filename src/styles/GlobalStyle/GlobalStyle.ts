@@ -74,6 +74,18 @@ a {
   height: 100%;
 }
 
+.card-button{
+  background-color: white;
+}
+
+.ms-3{
+    display: flex;
+    gap: 10px;
+    margin: 0;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
 `;
 
 export default GlobalStyle;

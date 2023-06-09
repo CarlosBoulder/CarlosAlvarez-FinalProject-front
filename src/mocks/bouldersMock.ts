@@ -57,3 +57,16 @@ export const boulderDeletedMock: BoulderStructure[] = [
     id: "122",
   },
 ];
+
+export const boulder: BoulderStructure[] = [
+  {
+    img: "imgUrl",
+    name: "Rema remero",
+    crag: "Techos",
+    spot: "Albarracín",
+    country: "España",
+    description: "Sit start from small crimps",
+    grade: "7A",
+    id: "1234",
+  },
+];
