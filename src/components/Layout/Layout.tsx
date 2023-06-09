@@ -8,7 +8,7 @@ import Loader from "../Loading/Loader";
 
 const Layout = (): React.ReactElement => {
   const isLoading = useAppSelector((state) => state.uiStore.isLoading);
-  const isError = useAppSelector((state) => state.uiStore.isError);
+  const { isError, message } = useAppSelector((store) => store.uiStore);
 
   return (
     <>
@@ -17,7 +17,7 @@ const Layout = (): React.ReactElement => {
         <Outlet />
       </ContainerStyled>
       {isLoading && <Loader />}
-      {isError && <Feedback text={"Something went wrong"} />}
+      {isError && <Feedback text={message} />}
     </>
   );
 };
