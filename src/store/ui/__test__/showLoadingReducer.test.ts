@@ -6,19 +6,19 @@ describe("Given a showLoadinReducer reducer", () => {
     test("Then it should return a new state isLoading true", () => {
       const initialState: UiStateStructure = {
         isLoading: false,
-        isError: false,
+        showFeedback: false,
         message: "",
       };
 
       const newState: UiStateStructure = {
         isLoading: true,
-        isError: false,
+        showFeedback: false,
         message: "",
       };
 
       const expectedState: UiStateStructure = {
         isLoading: newState.isLoading,
-        isError: false,
+        showFeedback: false,
         message: "",
       };
 

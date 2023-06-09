@@ -34,7 +34,7 @@ const useUser = () => {
 
       dispatch(
         showFeedbackActionCreator({
-          isError: true,
+          showFeedback: true,
           message: "Wrong Credentials",
         })
       );

@@ -6,19 +6,19 @@ describe("Given a hideFeedbackReducer reducer", () => {
     test("Then it should", () => {
       const initialState: UiStateStructure = {
         isLoading: false,
-        isError: true,
+        showFeedback: true,
         message: "wrong credentials",
       };
 
       const newState: UiStateStructure = {
         isLoading: false,
-        isError: false,
+        showFeedback: false,
         message: "",
       };
 
       const expectedState: UiStateStructure = {
         isLoading: newState.isLoading,
-        isError: newState.isError,
+        showFeedback: newState.showFeedback,
         message: newState.message,
       };
 

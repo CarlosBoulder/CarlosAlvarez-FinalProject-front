@@ -6,24 +6,24 @@ describe("Given a showFeedbackReducer reducer", () => {
     test("Then it should return a new state isError true and the message 'wrong credentials'", () => {
       const initialState: UiStateStructure = {
         isLoading: false,
-        isError: false,
+        showFeedback: false,
         message: "",
       };
 
       const newState: UiStateStructure = {
         isLoading: false,
-        isError: true,
+        showFeedback: true,
         message: "wrong credentials",
       };
 
       const expectedState: UiStateStructure = {
         isLoading: newState.isLoading,
-        isError: newState.isError,
+        showFeedback: newState.showFeedback,
         message: newState.message,
       };
 
       const feedbackPayload: FeedbackPayloadStructure = {
-        isError: true,
+        showFeedback: true,
         message: "wrong credentials",
       };
 
