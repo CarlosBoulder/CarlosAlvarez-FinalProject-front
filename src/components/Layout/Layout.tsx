@@ -7,8 +7,9 @@ import Feedback from "../Feedback/Feedback";
 import Loader from "../Loading/Loader";
 
 const Layout = (): React.ReactElement => {
-  const isLoading = useAppSelector((state) => state.uiStore.isLoading);
-  const { isError, message } = useAppSelector((store) => store.uiStore);
+  const { message, isLoading, showFeedback, isError } = useAppSelector(
+    (store) => store.uiStore
+  );
 
   return (
     <>
@@ -17,7 +18,7 @@ const Layout = (): React.ReactElement => {
         <Outlet />
       </ContainerStyled>
       {isLoading && <Loader />}
-      {isError && <Feedback text={message} />}
+      {showFeedback && <Feedback text={message} isError={isError} />}
     </>
   );
 };

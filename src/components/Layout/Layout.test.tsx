@@ -10,6 +10,7 @@ describe("Given a Layout component", () => {
           isLoading: true,
           isError: true,
           message: "",
+          showFeedback: true,
         },
       });
 

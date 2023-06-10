@@ -8,18 +8,21 @@ describe("Given a showLoadingReducer reducer", () => {
         isLoading: true,
         isError: false,
         message: "",
+        showFeedback: false,
       };
 
       const newState: UiStateStructure = {
         isLoading: false,
         isError: false,
         message: "",
+        showFeedback: false,
       };
 
       const expectedState: UiStateStructure = {
         isLoading: newState.isLoading,
         isError: false,
         message: "",
+        showFeedback: false,
       };
 
       const actionCreator = hideLoadingActionCreator();

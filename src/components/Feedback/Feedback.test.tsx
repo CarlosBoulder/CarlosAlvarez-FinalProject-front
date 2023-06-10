@@ -7,11 +7,16 @@ describe("Given a Feedback component", () => {
     test("Then it should show a modal with the text 'Wrong Credentials'", () => {
       const text = "Wrong Credentials";
 
-      renderWithProviders(<Feedback text={text} />);
-
-      const expectedModal = screen.getByRole("heading", {
-        name: text,
+      renderWithProviders(<Feedback text={text} />, {
+        uiStore: {
+          isError: true,
+          isLoading: false,
+          showFeedback: true,
+          message: text,
+        },
       });
+
+      const expectedModal = screen.getByText(text);
 
       expect(expectedModal).toBeInTheDocument();
     });
