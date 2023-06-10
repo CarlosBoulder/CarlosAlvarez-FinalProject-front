@@ -3,6 +3,7 @@ import { FeedbackPayloadStructure, UiStateStructure } from "./types";
 
 const initialState: UiStateStructure = {
   isLoading: false,
+  isError: false,
   showFeedback: false,
   message: "",
 };
@@ -26,14 +27,16 @@ const uiSlice = createSlice({
       action: PayloadAction<FeedbackPayloadStructure>
     ): UiStateStructure => ({
       ...currentState,
-      showFeedback: action.payload.showFeedback,
+      isError: action.payload.isError,
       message: action.payload.message,
+      showFeedback: action.payload.showFeedback,
     }),
 
     hideFeedback: (currentState: UiStateStructure): UiStateStructure => ({
       ...currentState,
-      showFeedback: false,
+      isError: false,
       message: "",
+      showFeedback: false,
     }),
   },
 });

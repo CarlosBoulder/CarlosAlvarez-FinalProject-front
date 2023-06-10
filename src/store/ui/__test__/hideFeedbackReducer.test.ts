@@ -2,24 +2,27 @@ import { UiStateStructure } from "../types";
 import { hideFeedbackActionCreator, uiReducer } from "../uiSlice";
 
 describe("Given a hideFeedbackReducer reducer", () => {
-  describe("When it receives", () => {
+  describe("When it receives ", () => {
     test("Then it should", () => {
       const initialState: UiStateStructure = {
         isLoading: false,
-        showFeedback: true,
+        isError: true,
         message: "wrong credentials",
+        showFeedback: true,
       };
 
       const newState: UiStateStructure = {
         isLoading: false,
-        showFeedback: false,
+        isError: false,
         message: "",
+        showFeedback: false,
       };
 
       const expectedState: UiStateStructure = {
         isLoading: newState.isLoading,
-        showFeedback: newState.showFeedback,
+        isError: newState.isError,
         message: newState.message,
+        showFeedback: newState.showFeedback,
       };
 
       const actionCreator = hideFeedbackActionCreator();

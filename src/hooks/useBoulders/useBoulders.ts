@@ -37,6 +37,7 @@ const useBoulders = (token: string) => {
         showFeedbackActionCreator({
           showFeedback: true,
           message: "Error trying to get boulders",
+          isError: true,
         })
       );
     }
@@ -60,6 +61,7 @@ const useBoulders = (token: string) => {
           showFeedbackActionCreator({
             showFeedback: true,
             message: "Boulder deleted",
+            isError: false,
           })
         );
         dispatch(deleteBouldersActionCreator(boulderId));
@@ -71,6 +73,7 @@ const useBoulders = (token: string) => {
           showFeedbackActionCreator({
             showFeedback: true,
             message: "Error trying to delete boulder",
+            isError: true,
           })
         );
       }
