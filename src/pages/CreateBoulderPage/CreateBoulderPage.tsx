@@ -1,3 +1,4 @@
+import CreateBoulderForm from "../../components/CreateBoulderForm/CreateBoulderForm";
 import CreatePageStyled from "./CreateBoulderPageStyled";
 
 const CreateBoulderPage = (): React.ReactElement => {
@@ -5,6 +6,7 @@ const CreateBoulderPage = (): React.ReactElement => {
     <CreatePageStyled>
       <section>
         <h2>Create your boulder</h2>
+        <CreateBoulderForm />
       </section>
     </CreatePageStyled>
   );
