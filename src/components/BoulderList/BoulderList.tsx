@@ -17,13 +17,15 @@ const BoulderList = ({ boulders }: BoulderListProps): React.ReactElement => {
   };
 
   return (
-    <BoulderListStyled className="boulder-list">
-      {boulders.map((boulder) => (
-        <li key={boulder.id}>
-          <BoulderCard boulder={boulder} actionOnClick={deleteOnClick} />
-        </li>
-      ))}
-    </BoulderListStyled>
+    <>
+      <BoulderListStyled className="boulder-list">
+        {boulders.map((boulder) => (
+          <li key={boulder.id}>
+            <BoulderCard boulder={boulder} actionOnClick={deleteOnClick} />
+          </li>
+        ))}
+      </BoulderListStyled>
+    </>
   );
 };
 
