@@ -8,3 +8,7 @@ interface BoulderDetails {
   grade: string;
 }
 export default BoulderDetails;
+
+export interface BoulderStructureDetails {
+  boulderDetails: BoulderDetails;
+}
