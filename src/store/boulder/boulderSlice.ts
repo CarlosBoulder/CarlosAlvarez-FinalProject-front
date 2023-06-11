@@ -1,6 +1,11 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import BoulderStructure from "../types";
 
+export interface PaginatedBoulderState extends BoulderState {
+  currentPage: number;
+  totalPages: number;
+}
+
 export interface BoulderState {
   boulders: BoulderStructure[];
 }

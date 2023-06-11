@@ -45,6 +45,15 @@ button {
   cursor: pointer;
 }
 
+.pagination-button{
+  font: inherit;
+  border: none;
+  background-color: #FFEC00;
+  width: 70px;
+  height: 40px;
+  border-radius: 5px;
+}
+
 input {
   font: inherit;
   border: 2px solid;
