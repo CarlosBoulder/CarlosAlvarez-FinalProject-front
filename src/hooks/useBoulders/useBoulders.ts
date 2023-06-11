@@ -2,6 +2,7 @@ import axios from "axios";
 import { useCallback } from "react";
 import {
   BoulderState,
+  PaginatedBoulderState,
   deleteBouldersActionCreator,
 } from "../../store/boulder/boulderSlice";
 import { useAppDispatch } from "../../store";
@@ -16,6 +17,37 @@ const apiUrl = import.meta.env.VITE_API_URL;
 
 const useBoulders = (token: string) => {
   const dispatch = useAppDispatch();
+
+  const getPaginatedBoulders = useCallback(
+    async (page: number): Promise<PaginatedBoulderState | undefined> => {
+      dispatch(showLoadingActionCreator());
+
+      try {
+        const response = await axios.get(
+          `${apiUrl}/boulders/paged?page=${page}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        dispatch(hideLoadingActionCreator());
+
+        return response.data;
+      } catch (error) {
+        dispatch(hideLoadingActionCreator());
+        dispatch(
+          showFeedbackActionCreator({
+            showFeedback: true,
+            message: "Error trying to get boulders",
+            isError: true,
+          })
+        );
+      }
+    },
+    [token, dispatch]
+  );
 
   const getBoulders = useCallback(async (): Promise<
     BoulderState | undefined
@@ -114,7 +146,7 @@ const useBoulders = (token: string) => {
     [token, dispatch]
   );
 
-  return { getBoulders, deleteBoulder, addBoulder };
+  return { getPaginatedBoulders, getBoulders, deleteBoulder, addBoulder };
 };
 
 export default useBoulders;
