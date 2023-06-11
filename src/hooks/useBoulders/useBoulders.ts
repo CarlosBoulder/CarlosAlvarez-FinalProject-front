@@ -83,12 +83,10 @@ const useBoulders = (token: string) => {
   );
 
   const addBoulder = useCallback(
-    async (
-      boulder: BoulderStructureDetails
-    ): Promise<BoulderStructureDetails | undefined> => {
+    async (boulder: BoulderStructureDetails): Promise<number | undefined> => {
       dispatch(showLoadingActionCreator());
       try {
-        const { data } = await axios.post(
+        const { status } = await axios.post(
           `${apiUrl}/boulders/create`,
           boulder,
           {
@@ -107,16 +105,10 @@ const useBoulders = (token: string) => {
           })
         );
 
-        return data.boulder;
+        return status;
       } catch (error) {
         dispatch(hideLoadingActionCreator());
-        dispatch(
-          showFeedbackActionCreator({
-            showFeedback: true,
-            message: "Error trying to create the boulder",
-            isError: true,
-          })
-        );
+        throw error;
       }
     },
     [token, dispatch]

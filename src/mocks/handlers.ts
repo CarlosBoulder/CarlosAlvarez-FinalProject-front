@@ -18,6 +18,10 @@ export const handlers = [
   rest.delete(`${apiUrl}/boulders/:boulderId`, (_req, res, ctx) => {
     return res(ctx.status(200), ctx.json({ message: "Boulder deleted" }));
   }),
+
+  rest.post(`${apiUrl}/boulders/create`, (_req, res, ctx) => {
+    return res(ctx.status(201), ctx.json({ message: "Boulder created" }));
+  }),
 ];
 
 export const errorHandlers = [
@@ -31,5 +35,9 @@ export const errorHandlers = [
 
   rest.delete(`${apiUrl}/boulders/:boulderId`, (_req, res, ctx) => {
     return res(ctx.status(404), ctx.json({ message: "Boulder not found" }));
+  }),
+
+  rest.post(`${apiUrl}/boulders/create`, (_req, res, ctx) => {
+    return res(ctx.status(500));
   }),
 ];
