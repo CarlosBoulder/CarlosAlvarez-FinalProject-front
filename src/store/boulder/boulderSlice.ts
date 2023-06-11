@@ -30,12 +30,21 @@ export const boulderSlice = createSlice({
         (boulder) => boulder.id !== action.payload
       ),
     }),
+
+    createBoulder: (
+      currenState: BoulderState,
+      action: PayloadAction<BoulderStructure>
+    ): BoulderState => ({
+      ...currenState,
+      boulders: [...currenState.boulders, action.payload],
+    }),
   },
 });
 
 export const {
   loadBoulders: loadBouldersActionCreator,
   deleteBoulders: deleteBouldersActionCreator,
+  createBoulder: createBoulderActionCreator,
 } = boulderSlice.actions;
 
 export const bouldersReducer = boulderSlice.reducer;

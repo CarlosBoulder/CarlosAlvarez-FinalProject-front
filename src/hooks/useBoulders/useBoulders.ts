@@ -10,6 +10,7 @@ import {
   showFeedbackActionCreator,
   showLoadingActionCreator,
 } from "../../store/ui/uiSlice";
+import { BoulderStructureDetails } from "../../components/CreateBoulderForm/types";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -81,7 +82,39 @@ const useBoulders = (token: string) => {
     [token, dispatch]
   );
 
-  return { getBoulders, deleteBoulder };
+  const addBoulder = useCallback(
+    async (boulder: BoulderStructureDetails): Promise<number | undefined> => {
+      dispatch(showLoadingActionCreator());
+      try {
+        const { status } = await axios.post(
+          `${apiUrl}/boulders/create`,
+          boulder,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        dispatch(hideLoadingActionCreator());
+        dispatch(
+          showFeedbackActionCreator({
+            showFeedback: true,
+            message: "Boulder created",
+            isError: false,
+          })
+        );
+
+        return status;
+      } catch (error) {
+        dispatch(hideLoadingActionCreator());
+        throw error;
+      }
+    },
+    [token, dispatch]
+  );
+
+  return { getBoulders, deleteBoulder, addBoulder };
 };
 
 export default useBoulders;

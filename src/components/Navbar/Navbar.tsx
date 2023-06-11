@@ -26,7 +26,7 @@ const NavigationBar = (): React.ReactElement => {
           id="basic-nav-dropdown"
         >
           <NavDropdown.Item href="/home">Home</NavDropdown.Item>
-          <NavDropdown.Item href="#action/3.2">Add boulder</NavDropdown.Item>
+          <NavDropdown.Item href="/addBoulder">Add boulder</NavDropdown.Item>
           <NavDropdown.Item href="/login" onClick={actionOnClick}>
             Logout
           </NavDropdown.Item>

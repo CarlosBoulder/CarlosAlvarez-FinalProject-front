@@ -5,6 +5,7 @@ import { wrapper } from "../../utils/testUtils";
 import { server } from "../../mocks/server";
 import { errorHandlers } from "../../mocks/handlers";
 import { store } from "../../store";
+import { BoulderStructureDetails } from "../../components/CreateBoulderForm/types";
 
 describe("Given a useBoulders custom hook", () => {
   describe("When it calls getBoulders with a valid token", () => {
@@ -82,6 +83,66 @@ describe("Given a useBoulders custom hook", () => {
       const expectedStatus = await deleteBoulder(boulderId);
 
       expect(expectedStatus).toBeUndefined();
+    });
+  });
+
+  describe("Given a useBoulders custom hook", () => {
+    const tokenMock =
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDcwNWYyOTU0YWVhZTkyNWQ0NmQ4ZDQiLCJuYW1lIjoiYWRtaW4iLCJpYXQiOjE2ODU3OTE5NjQsImV4cCI6MTY4NTg3ODM2NH0.ShrYNKznLbxIvDdGvBgdy8zsIIL96gASjJddRyIBauY";
+
+    describe("When it calls addBoulder with a valid token", () => {
+      test("Then it should create a new boulder", async () => {
+        const {
+          result: {
+            current: { addBoulder },
+          },
+        } = renderHook(() => useBoulders(tokenMock), { wrapper: wrapper });
+
+        const newBoulder: BoulderStructureDetails = {
+          boulderDetails: {
+            img: "https://example.com/image.jpg",
+            name: "New Boulder",
+            crag: "New Crag",
+            grade: "V5",
+            description: "New boulder description",
+            country: "New Country",
+            spot: "New Spot",
+          },
+        };
+        const status = 201;
+
+        const expectedStatus = await addBoulder(newBoulder);
+
+        expect(status).toBe(expectedStatus);
+      });
+    });
+
+    describe("When it calls addBoulder with an invalid token", () => {
+      test("Then it should throw an error", () => {
+        server.resetHandlers(...errorHandlers);
+
+        const {
+          result: {
+            current: { addBoulder },
+          },
+        } = renderHook(() => useBoulders(tokenMock), { wrapper: wrapper });
+
+        const newBoulder: BoulderStructureDetails = {
+          boulderDetails: {
+            img: "https://example.com/image.jpg",
+            name: "New Boulder",
+            crag: "New Crag",
+            grade: "V5",
+            description: "New boulder description",
+            country: "New Country",
+            spot: "New Spot",
+          },
+        };
+
+        const createdBoulder = addBoulder(newBoulder);
+
+        expect(createdBoulder).rejects.toThrowError();
+      });
     });
   });
 });
