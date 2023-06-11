@@ -12,6 +12,8 @@ const LoaderStyled = styled.div`
   min-width: 100vw;
   min-height: 100vh;
   z-index: 10;
+  background-color: white;
+  opacity: 0.8;
 `;
 
 export default LoaderStyled;
