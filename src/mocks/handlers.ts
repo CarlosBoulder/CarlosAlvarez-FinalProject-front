@@ -22,6 +22,10 @@ export const handlers = [
   rest.post(`${apiUrl}/boulders/create`, (_req, res, ctx) => {
     return res(ctx.status(201), ctx.json({ message: "Boulder created" }));
   }),
+
+  rest.get(`${apiUrl}/boulders/paged`, (_req, res, ctx) => {
+    return res(ctx.status(200), ctx.json({ boulders: [] }));
+  }),
 ];
 
 export const errorHandlers = [
@@ -38,6 +42,6 @@ export const errorHandlers = [
   }),
 
   rest.post(`${apiUrl}/boulders/create`, (_req, res, ctx) => {
-    return res(ctx.status(500));
+    return res(ctx.status(401));
   }),
 ];
