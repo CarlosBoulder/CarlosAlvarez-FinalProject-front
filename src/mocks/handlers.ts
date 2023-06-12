@@ -42,6 +42,6 @@ export const errorHandlers = [
   }),
 
   rest.post(`${apiUrl}/boulders/create`, (_req, res, ctx) => {
-    return res(ctx.status(500));
+    return res(ctx.status(401));
   }),
 ];
