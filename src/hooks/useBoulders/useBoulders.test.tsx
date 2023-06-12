@@ -52,7 +52,7 @@ describe("Given a useBoulders custom hook", () => {
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDcwNWYyOTU0YWVhZTkyNWQ0NmQ4ZDQiLCJuYW1lIjoiYWRtaW4iLCJpYXQiOjE2ODU3OTE5NjQsImV4cCI6MTY4NTg3ODM2NH0.ShrYNKznLbxIvDdGvBgdy8zsIIL96gASjJddRyIBauY";
 
   describe("When it calls deleteBoulders with a valid token and existing id", () => {
-    test("Then it should return a 200 status", async () => {
+    test("Then it should return a 'Boulder deleted' message", async () => {
       const {
         result: {
           current: { deleteBoulder },
@@ -61,16 +61,16 @@ describe("Given a useBoulders custom hook", () => {
 
       const boulderId = bouldersMock[0].id;
 
-      const status = 200;
+      await deleteBoulder(boulderId);
 
-      const expectedStatus = await deleteBoulder(boulderId);
+      const message = store.getState().uiStore.message;
 
-      expect(status).toBe(expectedStatus);
+      expect(message).toBe("Boulder deleted");
     });
   });
 
   describe("When it calls deleteBoulders with a valid token and no existing id", () => {
-    test("Then it should return undefined", async () => {
+    test("Then it should return the message 'Error trying to delete boulder'", async () => {
       server.resetHandlers(...errorHandlers);
 
       const {
@@ -81,9 +81,11 @@ describe("Given a useBoulders custom hook", () => {
 
       const boulderId = "1589";
 
-      const expectedStatus = await deleteBoulder(boulderId);
+      await deleteBoulder(boulderId);
 
-      expect(expectedStatus).toBeUndefined();
+      const message = store.getState().uiStore.message;
+
+      expect(message).toBe("Error trying to delete boulder");
     });
   });
 
@@ -92,7 +94,7 @@ describe("Given a useBoulders custom hook", () => {
       "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDcwNWYyOTU0YWVhZTkyNWQ0NmQ4ZDQiLCJuYW1lIjoiYWRtaW4iLCJpYXQiOjE2ODU3OTE5NjQsImV4cCI6MTY4NTg3ODM2NH0.ShrYNKznLbxIvDdGvBgdy8zsIIL96gASjJddRyIBauY";
 
     describe("When it calls addBoulder with a valid token", () => {
-      test("Then it should create a new boulder", async () => {
+      test("Then it should create a new boulder and show the message 'Boulder created'", async () => {
         const {
           result: {
             current: { addBoulder },
@@ -110,11 +112,12 @@ describe("Given a useBoulders custom hook", () => {
             spot: "New Spot",
           },
         };
-        const status = 201;
 
-        const expectedStatus = await addBoulder(newBoulder);
+        await addBoulder(newBoulder);
 
-        expect(status).toBe(expectedStatus);
+        const message = store.getState().uiStore.message;
+
+        expect(message).toBe("Boulder created");
       });
     });
 
@@ -148,7 +151,7 @@ describe("Given a useBoulders custom hook", () => {
 
         const message = screen.getByText(expectedMessage);
 
-        await expect(message).toBeInTheDocument();
+        expect(message).toBeInTheDocument();
       });
     });
   });
