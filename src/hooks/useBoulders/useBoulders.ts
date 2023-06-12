@@ -77,17 +77,14 @@ const useBoulders = (token: string) => {
   }, [token, dispatch]);
 
   const deleteBoulder = useCallback(
-    async (boulderId: string): Promise<number | undefined> => {
+    async (boulderId: string): Promise<void | undefined> => {
       dispatch(showLoadingActionCreator());
       try {
-        const { status } = await axios.delete(
-          `${apiUrl}/boulders/${boulderId}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        await axios.delete(`${apiUrl}/boulders/${boulderId}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
         dispatch(hideLoadingActionCreator());
         dispatch(
@@ -98,8 +95,6 @@ const useBoulders = (token: string) => {
           })
         );
         dispatch(deleteBouldersActionCreator(boulderId));
-
-        return status;
       } catch (error) {
         dispatch(hideLoadingActionCreator());
         dispatch(
@@ -115,7 +110,7 @@ const useBoulders = (token: string) => {
   );
 
   const addBoulder = useCallback(
-    async (boulder: BoulderStructureDetails): Promise<number | undefined> => {
+    async (boulder: BoulderStructureDetails): Promise<boolean | undefined> => {
       dispatch(showLoadingActionCreator());
       try {
         const { status } = await axios.post(
@@ -137,10 +132,18 @@ const useBoulders = (token: string) => {
           })
         );
 
-        return status;
+        const success = status === 201;
+
+        return success;
       } catch (error) {
         dispatch(hideLoadingActionCreator());
-        throw error;
+        dispatch(
+          showFeedbackActionCreator({
+            showFeedback: true,
+            message: "Error trying to create the boulder",
+            isError: true,
+          })
+        );
       }
     },
     [token, dispatch]

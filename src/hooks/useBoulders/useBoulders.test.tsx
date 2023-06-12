@@ -1,11 +1,12 @@
-import { renderHook } from "@testing-library/react";
+import { renderHook, screen } from "@testing-library/react";
 import useBoulders from "./useBoulders";
 import bouldersMock from "../../mocks/bouldersMock";
-import { wrapper } from "../../utils/testUtils";
+import renderWithProviders, { wrapper } from "../../utils/testUtils";
 import { server } from "../../mocks/server";
 import { errorHandlers } from "../../mocks/handlers";
 import { store } from "../../store";
 import { BoulderStructureDetails } from "../../components/CreateBoulderForm/types";
+import Layout from "../../components/Layout/Layout";
 
 describe("Given a useBoulders custom hook", () => {
   describe("When it calls getBoulders with a valid token", () => {
@@ -51,7 +52,7 @@ describe("Given a useBoulders custom hook", () => {
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDcwNWYyOTU0YWVhZTkyNWQ0NmQ4ZDQiLCJuYW1lIjoiYWRtaW4iLCJpYXQiOjE2ODU3OTE5NjQsImV4cCI6MTY4NTg3ODM2NH0.ShrYNKznLbxIvDdGvBgdy8zsIIL96gASjJddRyIBauY";
 
   describe("When it calls deleteBoulders with a valid token and existing id", () => {
-    test("Then it should return a 200 status", async () => {
+    test("Then it should return a 'Boulder deleted' message", async () => {
       const {
         result: {
           current: { deleteBoulder },
@@ -60,16 +61,16 @@ describe("Given a useBoulders custom hook", () => {
 
       const boulderId = bouldersMock[0].id;
 
-      const status = 200;
+      await deleteBoulder(boulderId);
 
-      const expectedStatus = await deleteBoulder(boulderId);
+      const message = store.getState().uiStore.message;
 
-      expect(status).toBe(expectedStatus);
+      expect(message).toBe("Boulder deleted");
     });
   });
 
   describe("When it calls deleteBoulders with a valid token and no existing id", () => {
-    test("Then it should return undefined", async () => {
+    test("Then it should return the message 'Error trying to delete boulder'", async () => {
       server.resetHandlers(...errorHandlers);
 
       const {
@@ -80,9 +81,11 @@ describe("Given a useBoulders custom hook", () => {
 
       const boulderId = "1589";
 
-      const expectedStatus = await deleteBoulder(boulderId);
+      await deleteBoulder(boulderId);
 
-      expect(expectedStatus).toBeUndefined();
+      const message = store.getState().uiStore.message;
+
+      expect(message).toBe("Error trying to delete boulder");
     });
   });
 
@@ -91,7 +94,7 @@ describe("Given a useBoulders custom hook", () => {
       "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDcwNWYyOTU0YWVhZTkyNWQ0NmQ4ZDQiLCJuYW1lIjoiYWRtaW4iLCJpYXQiOjE2ODU3OTE5NjQsImV4cCI6MTY4NTg3ODM2NH0.ShrYNKznLbxIvDdGvBgdy8zsIIL96gASjJddRyIBauY";
 
     describe("When it calls addBoulder with a valid token", () => {
-      test("Then it should create a new boulder", async () => {
+      test("Then it should create a new boulder and show the message 'Boulder created'", async () => {
         const {
           result: {
             current: { addBoulder },
@@ -109,23 +112,28 @@ describe("Given a useBoulders custom hook", () => {
             spot: "New Spot",
           },
         };
-        const status = 201;
 
-        const expectedStatus = await addBoulder(newBoulder);
+        await addBoulder(newBoulder);
 
-        expect(status).toBe(expectedStatus);
+        const message = store.getState().uiStore.message;
+
+        expect(message).toBe("Boulder created");
       });
     });
 
     describe("When it calls addBoulder with an invalid token", () => {
-      test("Then it should throw an error", () => {
+      test("Then it should show the message 'Error trying to create the boulder'", async () => {
         server.resetHandlers(...errorHandlers);
+
+        const expectedMessage = "Error trying to create the boulder";
 
         const {
           result: {
             current: { addBoulder },
           },
         } = renderHook(() => useBoulders(tokenMock), { wrapper: wrapper });
+
+        renderWithProviders(<Layout />);
 
         const newBoulder: BoulderStructureDetails = {
           boulderDetails: {
@@ -139,9 +147,11 @@ describe("Given a useBoulders custom hook", () => {
           },
         };
 
-        const createdBoulder = addBoulder(newBoulder);
+        await addBoulder(newBoulder);
 
-        expect(createdBoulder).rejects.toThrowError();
+        const message = screen.getByText(expectedMessage);
+
+        expect(message).toBeInTheDocument();
       });
     });
   });

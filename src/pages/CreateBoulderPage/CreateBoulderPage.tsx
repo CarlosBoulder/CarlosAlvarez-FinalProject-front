@@ -1,30 +1,21 @@
 import CreateBoulderForm from "../../components/CreateBoulderForm/CreateBoulderForm";
 import useBoulders from "../../hooks/useBoulders/useBoulders";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../../store";
+import { useAppSelector } from "../../store";
 import CreatePageStyled from "./CreateBoulderPageStyled";
 import { BoulderStructureDetails } from "../../components/CreateBoulderForm/types";
-import { showFeedbackActionCreator } from "../../store/ui/uiSlice";
 
 const CreateBoulderPage = (): React.ReactElement => {
   const token = useAppSelector((store) => store.userStore.token);
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
 
   const { addBoulder } = useBoulders(token);
 
   const handleOnSubmit = async (boulder: BoulderStructureDetails) => {
-    try {
-      await addBoulder(boulder);
+    const success = await addBoulder(boulder);
+
+    if (success) {
       navigate("/home", { replace: true });
-    } catch (error) {
-      dispatch(
-        showFeedbackActionCreator({
-          showFeedback: true,
-          message: "Error trying to create the boulder",
-          isError: true,
-        })
-      );
     }
   };
 
