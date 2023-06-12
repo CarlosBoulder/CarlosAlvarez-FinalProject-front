@@ -23,7 +23,6 @@ const ListPage = (): React.ReactElement => {
         const totalPages = boulders.totalPages;
         setTotalPages(totalPages);
       }
-
       if (boulders) {
         dispatch(loadBouldersActionCreator(boulders.boulders));
       }

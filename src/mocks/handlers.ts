@@ -24,7 +24,7 @@ export const handlers = [
   }),
 
   rest.get(`${apiUrl}/boulders/paged`, (_req, res, ctx) => {
-    return res(ctx.status(200), ctx.json({}));
+    return res(ctx.status(200), ctx.json({ boulders: [] }));
   }),
 ];
 
