@@ -1,11 +1,12 @@
-import { renderHook } from "@testing-library/react";
+import { renderHook, screen } from "@testing-library/react";
 import useBoulders from "./useBoulders";
 import bouldersMock from "../../mocks/bouldersMock";
-import { wrapper } from "../../utils/testUtils";
+import renderWithProviders, { wrapper } from "../../utils/testUtils";
 import { server } from "../../mocks/server";
 import { errorHandlers } from "../../mocks/handlers";
 import { store } from "../../store";
 import { BoulderStructureDetails } from "../../components/CreateBoulderForm/types";
+import Layout from "../../components/Layout/Layout";
 
 describe("Given a useBoulders custom hook", () => {
   describe("When it calls getBoulders with a valid token", () => {
@@ -118,14 +119,18 @@ describe("Given a useBoulders custom hook", () => {
     });
 
     describe("When it calls addBoulder with an invalid token", () => {
-      test("Then it should throw an error", () => {
+      test("Then it should show the message 'Error trying to create the boulder'", async () => {
         server.resetHandlers(...errorHandlers);
+
+        const expectedMessage = "Error trying to create the boulder";
 
         const {
           result: {
             current: { addBoulder },
           },
         } = renderHook(() => useBoulders(tokenMock), { wrapper: wrapper });
+
+        renderWithProviders(<Layout />);
 
         const newBoulder: BoulderStructureDetails = {
           boulderDetails: {
@@ -139,9 +144,11 @@ describe("Given a useBoulders custom hook", () => {
           },
         };
 
-        const createdBoulder = addBoulder(newBoulder);
+        await addBoulder(newBoulder);
 
-        expect(createdBoulder).rejects.toThrowError();
+        const message = screen.getByText(expectedMessage);
+
+        await expect(message).toBeInTheDocument();
       });
     });
   });

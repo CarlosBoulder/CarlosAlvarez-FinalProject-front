@@ -42,6 +42,9 @@ export const errorHandlers = [
   }),
 
   rest.post(`${apiUrl}/boulders/create`, (_req, res, ctx) => {
-    return res(ctx.status(401));
+    return res(
+      ctx.status(401),
+      ctx.json({ message: "Error trying to create the boulder" })
+    );
   }),
 ];

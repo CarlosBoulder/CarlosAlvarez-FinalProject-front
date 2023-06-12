@@ -140,7 +140,13 @@ const useBoulders = (token: string) => {
         return status;
       } catch (error) {
         dispatch(hideLoadingActionCreator());
-        throw error;
+        dispatch(
+          showFeedbackActionCreator({
+            showFeedback: true,
+            message: "Error trying to create the boulder",
+            isError: true,
+          })
+        );
       }
     },
     [token, dispatch]
