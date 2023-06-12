@@ -27,8 +27,8 @@ describe("Given a CreateBoulderPage component", () => {
     });
   });
 
-  describe("When it is rendered and there is a problem creating a new boulder", () => {
-    test("Then it should throw error", async () => {
+  describe("When it is rendered and the boulder is created", () => {
+    test("Then it should redirect to home page", async () => {
       const routes = [
         { path: "/", element: <CreateBoulderPage /> },
         { path: "/home", element: <BoulderList boulders={bouldersMock} /> },
