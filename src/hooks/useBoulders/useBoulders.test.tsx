@@ -3,7 +3,7 @@ import useBoulders from "./useBoulders";
 import bouldersMock from "../../mocks/bouldersMock";
 import renderWithProviders, { wrapper } from "../../utils/testUtils";
 import { server } from "../../mocks/server";
-import { errorHandlers } from "../../mocks/handlers";
+import { errorHandlers, tokenMock } from "../../mocks/handlers";
 import { store } from "../../store";
 import { BoulderStructureDetails } from "../../components/CreateBoulderForm/types";
 import Layout from "../../components/Layout/Layout";
@@ -153,6 +153,44 @@ describe("Given a useBoulders custom hook", () => {
 
         expect(message).toBeInTheDocument();
       });
+    });
+  });
+});
+
+describe("Given a useBoulders custom hook", () => {
+  describe("When it calls getPaginatedBoulders with a valid token and existing id", () => {
+    test("Then it should return a lis of boulders", async () => {
+      const page = 1;
+
+      const {
+        result: {
+          current: { getPaginatedBoulders },
+        },
+      } = renderHook(() => useBoulders(tokenMock), { wrapper: wrapper });
+
+      const boulders = await getPaginatedBoulders(page);
+
+      const expectedBoulders = boulders;
+
+      expect(boulders).toStrictEqual(expectedBoulders);
+    });
+  });
+
+  describe("When it calls getPaginatedBoulders and sometihg went wrong", () => {
+    test("Then it should error", async () => {
+      server.resetHandlers(...errorHandlers);
+
+      const page = 1;
+
+      const {
+        result: {
+          current: { getPaginatedBoulders },
+        },
+      } = renderHook(() => useBoulders(tokenMock), { wrapper: wrapper });
+
+      const boulders = await getPaginatedBoulders(page);
+
+      expect(boulders).toBeUndefined();
     });
   });
 });

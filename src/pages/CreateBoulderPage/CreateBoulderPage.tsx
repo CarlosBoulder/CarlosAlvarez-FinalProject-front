@@ -22,7 +22,7 @@ const CreateBoulderPage = (): React.ReactElement => {
   return (
     <CreatePageStyled>
       <section>
-        <h2>Create your boulder</h2>
+        <h2 className="create">Create your boulder</h2>
         <CreateBoulderForm handleOnSubmit={handleOnSubmit} />
       </section>
     </CreatePageStyled>

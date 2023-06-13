@@ -25,6 +25,7 @@ h6,
 p {
   margin: 0;
   font: inherit;
+  text-align: center;
 }
 
 h1{
