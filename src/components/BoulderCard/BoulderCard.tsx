@@ -24,7 +24,12 @@ const BoulderCard = ({
           </div>
         </div>
         <button className="card-button" onClick={() => actionOnClick(id)}>
-          <img src="/images/trash.svg" alt="trash icon" />
+          <img
+            src="/images/trash.svg"
+            alt="trash icon"
+            width={24}
+            height={24}
+          />
         </button>
       </div>
       <hr style={{ margin: "10px 0", width: "100%" }} />
