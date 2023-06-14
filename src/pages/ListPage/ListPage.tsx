@@ -31,10 +31,12 @@ const ListPage = (): React.ReactElement => {
 
   const nextPage = () => {
     setCurrentPage(currentPage + 1);
+    window.scrollTo(0, 0);
   };
 
   const prevPage = () => {
     setCurrentPage(currentPage - 1);
+    window.scrollTo(0, 0);
   };
   return (
     <ListPageStyled>
