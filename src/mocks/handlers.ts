@@ -52,3 +52,9 @@ export const errorHandlers = [
     return res(ctx.status(500));
   }),
 ];
+
+export const paginatedBouldersHandlers = [
+  rest.get(`${apiUrl}/paged`, (_req, res, ctx) => {
+    res(ctx.status(200), ctx.json({}));
+  }),
+];

@@ -19,18 +19,22 @@ body {
 h1,
 h2,
 h3,
-h4,
 h5,
 h6,
 p {
   margin: 0;
   font: inherit;
-  text-align: center;
 }
 
 h1{
   font-size: 2.5rem;
   font-weight: bold;
+  text-align: center;
+}
+
+h4{
+  margin: 0;
+  font: inherit;
   text-align: center;
 }
 
