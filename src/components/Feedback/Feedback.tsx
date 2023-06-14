@@ -35,14 +35,24 @@ const Feedback = ({
         {isError ? (
           <Modal.Body>
             <h4>
-              <img src="/images/error.svg" alt="error icon" />
+              <img
+                src="/images/error.svg"
+                alt="error icon"
+                width={48}
+                height={48}
+              />
               {text}
             </h4>
           </Modal.Body>
         ) : (
           <Modal.Body>
             <h4>
-              <img src="/images/done.svg" alt="done icon" />
+              <img
+                src="/images/done.svg"
+                alt="done icon"
+                width={48}
+                height={48}
+              />
               {text}
             </h4>
           </Modal.Body>
