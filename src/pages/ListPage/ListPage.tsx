@@ -14,7 +14,6 @@ const ListPage = (): React.ReactElement => {
   const { getPaginatedBoulders } = useBoulders(token);
 
   const dispatch = useAppDispatch();
-  let isEmpty = false;
 
   useEffect(() => {
     (async () => {
@@ -29,7 +28,6 @@ const ListPage = (): React.ReactElement => {
   }, [dispatch, getPaginatedBoulders, currentPage]);
 
   const bouldersList = useAppSelector((state) => state.boulderStore.boulders);
-  isEmpty = bouldersList.length === 0;
 
   const nextPage = () => {
     setCurrentPage(currentPage + 1);
@@ -40,19 +38,15 @@ const ListPage = (): React.ReactElement => {
   };
   return (
     <ListPageStyled>
-      {!isEmpty ? (
-        <>
-          <BoulderList boulders={bouldersList} />
-          <Pagination
-            page={currentPage}
-            next={nextPage}
-            prev={prevPage}
-            totalPages={totalPages}
-          />
-        </>
-      ) : (
-        <p>Boulders not found</p>
-      )}
+      <>
+        <BoulderList boulders={bouldersList} />
+        <Pagination
+          page={currentPage}
+          next={nextPage}
+          prev={prevPage}
+          totalPages={totalPages}
+        />
+      </>
     </ListPageStyled>
   );
 };

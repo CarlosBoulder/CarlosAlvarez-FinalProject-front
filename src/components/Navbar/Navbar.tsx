@@ -24,6 +24,7 @@ const NavigationBar = (): React.ReactElement => {
           className="burguer-menu"
           title={<AiOutlineMenu />}
           id="basic-nav-dropdown"
+          aria-label="dropdown menu"
         >
           <NavDropdown.Item href="/home">Home</NavDropdown.Item>
           <NavDropdown.Item href="/addBoulder">Add boulder</NavDropdown.Item>

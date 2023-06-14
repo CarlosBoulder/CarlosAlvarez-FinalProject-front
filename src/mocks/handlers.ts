@@ -47,4 +47,14 @@ export const errorHandlers = [
       ctx.json({ message: "Error trying to create the boulder" })
     );
   }),
+
+  rest.get(`${apiUrl}/boulders/paged`, (_req, res, ctx) => {
+    return res(ctx.status(500));
+  }),
+];
+
+export const paginatedBouldersHandlers = [
+  rest.get(`${apiUrl}/paged`, (_req, res, ctx) => {
+    res(ctx.status(200), ctx.json({}));
+  }),
 ];
