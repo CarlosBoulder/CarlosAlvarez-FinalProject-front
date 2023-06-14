@@ -54,7 +54,7 @@ export const errorHandlers = [
 ];
 
 export const paginatedBouldersHandlers = [
-  rest.get(`${apiUrl}/paged`, (_req, res, ctx) => {
+  rest.get(`${apiUrl}/boulders/paged`, (_req, res, ctx) => {
     res(ctx.status(200), ctx.json({}));
   }),
 ];
