@@ -176,7 +176,7 @@ describe("Given a useBoulders custom hook", () => {
     });
   });
 
-  describe("When it calls getPaginatedBoulders and sometihg went wrong", () => {
+  describe("When it calls getPaginatedBoulders and something went wrong", () => {
     test("Then it should error", async () => {
       server.resetHandlers(...errorHandlers);
 

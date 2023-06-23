@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import App from "../components/App/App";
 import {
   LazyCreateBoulderPage,
+  LazyDetailPage,
   LazyListPage,
   LazyLoginPage,
 } from "./LazyPages";
@@ -38,6 +39,14 @@ const routes: RouteObject[] = [
         element: (
           <Suspense>
             <LazyCreateBoulderPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/boulders/:id",
+        element: (
+          <Suspense>
+            <LazyDetailPage />
           </Suspense>
         ),
       },

@@ -11,3 +11,7 @@ export const LazyPageNotFound = lazy(
 export const LazyCreateBoulderPage = lazy(
   () => import("../pages/CreateBoulderPage/CreateBoulderPage")
 );
+
+export const LazyDetailPage = lazy(
+  () => import("../pages/DetailPage/DetailPage")
+);
