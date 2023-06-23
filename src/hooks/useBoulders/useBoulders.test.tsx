@@ -159,7 +159,7 @@ describe("Given a useBoulders custom hook", () => {
 
 describe("Given a useBoulders custom hook", () => {
   describe("When it calls getPaginatedBoulders with a valid token and existing id", () => {
-    test("Then it should return a lis of boulders", async () => {
+    test("Then it should return a list of boulders", async () => {
       const page = 1;
 
       const {
@@ -177,7 +177,7 @@ describe("Given a useBoulders custom hook", () => {
   });
 
   describe("When it calls getPaginatedBoulders and something went wrong", () => {
-    test("Then it should error", async () => {
+    test("Then it should throw error", async () => {
       server.resetHandlers(...errorHandlers);
 
       const page = 1;
