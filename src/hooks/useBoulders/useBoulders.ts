@@ -171,7 +171,7 @@ const useBoulders = (token: string) => {
         dispatch(
           showFeedbackActionCreator({
             showFeedback: true,
-            message: "Error trying to get boulders",
+            message: "Error trying to get boulder",
             isError: true,
           })
         );

@@ -194,3 +194,40 @@ describe("Given a useBoulders custom hook", () => {
     });
   });
 });
+
+describe("Given a useBoulders custom hook", () => {
+  describe("When it calls getBoulder with a valid token and existing id", () => {
+    test("Then it should return the boulder with that id", async () => {
+      const {
+        result: {
+          current: { getBoulder },
+        },
+      } = renderHook(() => useBoulders(bouldersMock[0].id as string), {
+        wrapper: wrapper,
+      });
+
+      const boulder = await getBoulder(bouldersMock[0].id);
+      const expectedBoulder = { boulder: bouldersMock[0] };
+
+      expect({ boulder: boulder }).toStrictEqual(expectedBoulder);
+    });
+  });
+
+  describe("When it calls getBoulder with none existing id", () => {
+    test("Then it should return undefined", async () => {
+      server.resetHandlers(...errorHandlers);
+
+      const {
+        result: {
+          current: { getBoulder },
+        },
+      } = renderHook(() => useBoulders(""), {
+        wrapper: wrapper,
+      });
+
+      const boulder = await getBoulder("1");
+
+      expect(boulder).toBeUndefined();
+    });
+  });
+});
