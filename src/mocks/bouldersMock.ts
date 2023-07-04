@@ -70,3 +70,14 @@ export const boulder: BoulderStructure[] = [
     id: "1234",
   },
 ];
+
+export const boulderById = {
+  img: "imgUrl",
+  name: "Rema remero",
+  crag: "Techos",
+  spot: "Albarracín",
+  country: "España",
+  description: "Sit start from small crimps",
+  grade: "7A",
+  id: "1234",
+};

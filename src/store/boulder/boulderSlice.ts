@@ -8,6 +8,7 @@ export interface PaginatedBoulderState extends BoulderState {
 
 export interface BoulderState {
   boulders: BoulderStructure[];
+  boulderById?: BoulderStructure;
 }
 
 export const initialState: BoulderState = {
@@ -43,6 +44,14 @@ export const boulderSlice = createSlice({
       ...currenState,
       boulders: [...currenState.boulders, action.payload],
     }),
+
+    loadBoulderById: (
+      currentState: BoulderState,
+      action: PayloadAction<BoulderStructure>
+    ): BoulderState => ({
+      ...currentState,
+      boulderById: action.payload,
+    }),
   },
 });
 
@@ -50,6 +59,7 @@ export const {
   loadBoulders: loadBouldersActionCreator,
   deleteBoulders: deleteBouldersActionCreator,
   createBoulder: createBoulderActionCreator,
+  loadBoulderById: loadBoulderByIdActionCreator,
 } = boulderSlice.actions;
 
 export const bouldersReducer = boulderSlice.reducer;

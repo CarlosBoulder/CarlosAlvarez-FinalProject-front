@@ -159,7 +159,7 @@ describe("Given a useBoulders custom hook", () => {
 
 describe("Given a useBoulders custom hook", () => {
   describe("When it calls getPaginatedBoulders with a valid token and existing id", () => {
-    test("Then it should return a lis of boulders", async () => {
+    test("Then it should return a list of boulders", async () => {
       const page = 1;
 
       const {
@@ -176,8 +176,8 @@ describe("Given a useBoulders custom hook", () => {
     });
   });
 
-  describe("When it calls getPaginatedBoulders and sometihg went wrong", () => {
-    test("Then it should error", async () => {
+  describe("When it calls getPaginatedBoulders and something went wrong", () => {
+    test("Then it should throw error", async () => {
       server.resetHandlers(...errorHandlers);
 
       const page = 1;
@@ -191,6 +191,43 @@ describe("Given a useBoulders custom hook", () => {
       const boulders = await getPaginatedBoulders(page);
 
       expect(boulders).toBeUndefined();
+    });
+  });
+});
+
+describe("Given a useBoulders custom hook", () => {
+  describe("When it calls getBoulder with a valid token and existing id", () => {
+    test("Then it should return the boulder with that id", async () => {
+      const {
+        result: {
+          current: { getBoulder },
+        },
+      } = renderHook(() => useBoulders(bouldersMock[0].id as string), {
+        wrapper: wrapper,
+      });
+
+      const boulder = await getBoulder(bouldersMock[0].id);
+      const expectedBoulder = { boulder: bouldersMock[0] };
+
+      expect({ boulder: boulder }).toStrictEqual(expectedBoulder);
+    });
+  });
+
+  describe("When it calls getBoulder with none existing id", () => {
+    test("Then it should return undefined", async () => {
+      server.resetHandlers(...errorHandlers);
+
+      const {
+        result: {
+          current: { getBoulder },
+        },
+      } = renderHook(() => useBoulders(""), {
+        wrapper: wrapper,
+      });
+
+      const boulder = await getBoulder("1");
+
+      expect(boulder).toBeUndefined();
     });
   });
 });

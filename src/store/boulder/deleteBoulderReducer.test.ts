@@ -6,7 +6,7 @@ import {
 } from "./boulderSlice";
 
 describe("Given a deleteBoulderReducer reducer", () => {
-  describe("When it receives a list of boulders and a deleteBoulder action with on boulder id", () => {
+  describe("When it receives a list of boulders and a deleteBoulder action with one boulder id", () => {
     test("Then it should delete the boulder", () => {
       const expectedBouldersState: BoulderState = {
         boulders: boulderDeletedMock,

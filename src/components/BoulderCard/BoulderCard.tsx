@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import BoulderStructure from "../../store/types";
 interface BoulderCardProps {
   boulder: BoulderStructure;
@@ -11,18 +12,24 @@ const BoulderCard = ({
   return (
     <>
       <div className="d-flex align-items-center justify-content-between">
-        <div className="ms-3">
-          <img src={img} alt={name} style={{ width: "60px", height: "50px" }} />
-          <div>
-            <h3 className="fw-bold mb-1 small">
-              {name} {grade}
-            </h3>
-            <p className="text-muted mb-0 small">
-              {crag}, {spot},<br />
-              {country}
-            </p>
+        <Link to={`/boulders/${id}`}>
+          <div className="ms-3">
+            <img
+              src={img}
+              alt={name}
+              style={{ width: "60px", height: "50px" }}
+            />
+            <div>
+              <h3 className="fw-bold mb-1 small">
+                {name} {grade}
+              </h3>
+              <p className="text-muted mb-0 small">
+                {crag}, {spot},<br />
+                {country}
+              </p>
+            </div>
           </div>
-        </div>
+        </Link>
         <button className="card-button" onClick={() => actionOnClick(id)}>
           <img
             src="/images/trash.svg"

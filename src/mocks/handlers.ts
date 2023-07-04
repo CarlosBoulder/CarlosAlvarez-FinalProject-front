@@ -24,7 +24,11 @@ export const handlers = [
   }),
 
   rest.get(`${apiUrl}/boulders/paged`, (_req, res, ctx) => {
-    return res(ctx.status(200), ctx.json({ boulders: [] }));
+    return res(ctx.status(200), ctx.json({ boulders: bouldersMock }));
+  }),
+
+  rest.get(`${apiUrl}/boulders/:id`, (_req, res, ctx) => {
+    return res(ctx.status(200), ctx.json({ boulder: bouldersMock[0] }));
   }),
 ];
 
@@ -51,10 +55,14 @@ export const errorHandlers = [
   rest.get(`${apiUrl}/boulders/paged`, (_req, res, ctx) => {
     return res(ctx.status(500));
   }),
+
+  rest.get(`${apiUrl}/boulders/:id`, (_req, res, ctx) => {
+    return res(ctx.status(401), ctx.json({ message: "Boulder not found" }));
+  }),
 ];
 
 export const paginatedBouldersHandlers = [
   rest.get(`${apiUrl}/boulders/paged`, (_req, res, ctx) => {
-    res(ctx.status(200), ctx.json({}));
+    res(ctx.status(200), ctx.json({ bouldersMock }));
   }),
 ];

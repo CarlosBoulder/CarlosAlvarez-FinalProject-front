@@ -12,6 +12,7 @@ import {
   showLoadingActionCreator,
 } from "../../store/ui/uiSlice";
 import { BoulderStructureDetails } from "../../components/CreateBoulderForm/types";
+import BoulderStructure from "../../store/types";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -149,7 +150,43 @@ const useBoulders = (token: string) => {
     [token, dispatch]
   );
 
-  return { getPaginatedBoulders, getBoulders, deleteBoulder, addBoulder };
+  const getBoulder = useCallback(
+    async (id: string): Promise<BoulderStructure | undefined> => {
+      dispatch(showLoadingActionCreator());
+
+      try {
+        const {
+          data: { boulder },
+        } = await axios.get(`${apiUrl}/boulders/${id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        dispatch(hideLoadingActionCreator());
+
+        return boulder;
+      } catch (error) {
+        dispatch(hideLoadingActionCreator());
+        dispatch(
+          showFeedbackActionCreator({
+            showFeedback: true,
+            message: "Error trying to get boulder",
+            isError: true,
+          })
+        );
+      }
+    },
+    [token, dispatch]
+  );
+
+  return {
+    getPaginatedBoulders,
+    getBoulders,
+    deleteBoulder,
+    addBoulder,
+    getBoulder,
+  };
 };
 
 export default useBoulders;
