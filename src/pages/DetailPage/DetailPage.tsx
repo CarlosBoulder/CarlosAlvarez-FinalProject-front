@@ -7,7 +7,6 @@ import { useEffect } from "react";
 import { loadBoulderByIdActionCreator } from "../../store/boulder/boulderSlice";
 
 const DetailsPage = (): React.ReactElement => {
-  window.scrollTo(0, 0);
   const token = useAppSelector((store) => store.userStore.token);
   const { id } = useParams();
   const { getBoulder } = useBoulders(token);
@@ -27,7 +26,7 @@ const DetailsPage = (): React.ReactElement => {
   return (
     <DetailsPageStyled>
       <Card>
-        <Card.Img variant="top" src={boulder?.img} />
+        <Card.Img variant="top" src={boulder?.img} alt={boulder?.name} />
         <Card.Body>
           <Card.Title>
             {boulder?.name} {boulder?.grade}

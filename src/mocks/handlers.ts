@@ -24,7 +24,7 @@ export const handlers = [
   }),
 
   rest.get(`${apiUrl}/boulders/paged`, (_req, res, ctx) => {
-    return res(ctx.status(200), ctx.json({ boulders: [] }));
+    return res(ctx.status(200), ctx.json({ boulders: bouldersMock }));
   }),
 
   rest.get(`${apiUrl}/boulders/:id`, (_req, res, ctx) => {
@@ -63,6 +63,6 @@ export const errorHandlers = [
 
 export const paginatedBouldersHandlers = [
   rest.get(`${apiUrl}/boulders/paged`, (_req, res, ctx) => {
-    res(ctx.status(200), ctx.json({}));
+    res(ctx.status(200), ctx.json({ bouldersMock }));
   }),
 ];
